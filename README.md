@@ -1,3 +1,3 @@
 # Ascurrete
 
-Proyecto de un juego
+Proyecto de un juego ATARI XL-XE
