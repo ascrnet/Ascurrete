@@ -1,6 +1,0 @@
-HISTORIAL PROCESO DE PROGRAMACION
-
-29-03-2020 07:01
-Agrego sys_equates, simple
-Agrego color de fondo pantalla y borde a gris
-agrego funcionalidad que elimina cursor de pantalla
