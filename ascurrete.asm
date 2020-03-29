@@ -1,7 +1,16 @@
+;INCLUIMOS LIBRERIAS ANEXAS
+	ICL 'BASE/SYS_EQUATES.M65'
     org $2000
 
 inicio
-
+;COLOR FONDO
+	MWA #$02 COLOR2
+	MVA #$02 COLOR4
+;BORRO CURSOR
+	LDA #$00
+	LDY #$02
+	STA ($58),Y
+;BUCLE
     jmp *
 
     run inicio
