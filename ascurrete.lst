@@ -1,7 +1,12 @@
 mads 2.0.6 build 58 (28 Jan 17)
 Source: C:\Users\dogdark\Documents\atari\Ascurrete\ascurrete.asm
-     1 				;INCLUIMOS LIBRERIAS ANEXAS
-     2 					ICL 'BASE/SYS_EQUATES.M65'
+     1 				;A 	= 	VALOR	CMP #VALOR 	BEQ 
+     2 				;A 	<> 	VALOR 	CMP #VALOR 	BNE 
+     3 				;A 	>= 	VALOR 	CMP #VALOR 	BCS
+     4 				;A 	> 	VALOR 	CMP #VALOR 	BEQ y luego BCS 
+     5 				;A 	< 	VALOR 	CMP #VALOR 	BCC
+     6 				;INCLUIMOS LIBRERIAS ANEXAS
+     7 					ICL 'BASE/SYS_EQUATES.M65'
 Source: C:\Users\dogdark\Documents\atari\Ascurrete\BASE\SYS_EQUATES.M65
      1 				;================================================================================
      2 				; System equates, Atari XL + mads [NRV 2009]
@@ -359,17 +364,69 @@ Source: C:\Users\dogdark\Documents\atari\Ascurrete\BASE\SYS_EQUATES.M65
    352 = 0008			WARMST	= $08
    353 = E474			WARMSV	= $E474
    354 = 0300			DDEVIC	= $0300
-     3 				    org $2000
-     4
-     5 				inicio
-     6 				;COLOR FONDO
-     7 FFFF> 2000-2017> A9 02 + 	MWA #$02 COLOR2
-     8 200A A9 02 8D C8 02		MVA #$02 COLOR4
-     9 				;BORRO CURSOR
-    10 200F A9 00			LDA #$00
-    11 2011 A0 02			LDY #$02
-    12 2013 91 58			STA ($58),Y
-    13 				;BUCLE
-    14 2015 4C 15 20		    jmp *
-    15
-    16 02E0-02E1> 00 20		    run inicio
+     8 				    org $2000
+     9 				DOS
+    10 FFFF> 2000-205B> 6C 0C + 	JMP ($0C)
+    11 2003			@START
+    12 2003 20 00 20			JSR DOS
+    13 2006			inicio
+    14 				//***********************************************
+    15 				// Vamos a poner una interrupción VBI aquí
+    16 				//***********************************************
+    17 2006 A0 3E			ldy #<VBI
+    18 2008 A2 20			ldx #>VBI
+    19 200A A9 07			lda #$07	; Diferida
+    20 200C 20 5C E4			jsr SETVBV	;Setea
+    21
+    22 				;COLOR FONDO
+    23 200F A9 02 8D C6 02 A9 + 	MWA #$02 COLOR2
+    24 2019 A9 02 8D C8 02		MVA #$02 COLOR4
+    25 				//***********************************************
+    26 				// BORRO CURSOR
+    27 				//***********************************************
+    28 201E A9 00			LDA #$00
+    29 2020 A0 02			LDY #$02
+    30 2022 91 58			STA ($58),Y
+    31 				;BUCLE
+    32 2024 4C 24 20		    jmp *
+    33 				    
+    34 				    
+    35
+    36 				//***********************************************
+    37 				// seteamos reset
+    38 				//***********************************************
+    39 2027			COMIENZO
+    40 2027 A2 03			LDX # <@START
+    41 2029 A0 20			LDY # >@START
+    42 202B A9 03			LDA #$03
+    43 202D 86 02			STX $02
+    44 202F 84 03			STY $03
+    45 2031 85 09			STA $09
+    46 2033 A0 FF			LDY #$FF
+    47 2035 84 08			STY $08
+    48 2037 C8				INY   
+    49 2038 8C 44 02			STY $0244
+    50 203B 4C 06 20			JMP INICIO
+    51 				//***********************************************
+    52 				// funcionalidades
+    53 				// teclas especiales
+    54 				// START SELECT OPTION
+    55 				//***********************************************
+    56 203E			.proc VBI
+    57 203E AD 1F D0			lda consol
+    58 2041 C9 06			cmp #$06
+    59 2043 F0 0B			beq esstart
+    60 2045 C9 05			cmp #$05
+    61 2047 F0 0D			beq esselect
+    62 2049 C9 03			cmp #$03
+    63 204B F0 06			beq esoption
+    64 204D 4C 3E 20			jmp vbi
+    65 2050			esstart
+    66 2050 4C 06 20			jmp inicio
+    67 2053			esoption
+    68 2053 4C 53 20			jmp *
+    69 2056			esselect
+    70 2056 4C 56 20			jmp *
+    71 2059 4C 62 E4			jmp $e462
+    72 				.endp
+    73 02E0-02E1> 27 20		    run COMIENZO
