@@ -4,70 +4,95 @@
 ;A 	> 	VALOR 	CMP #VALOR 	BEQ y luego BCS 
 ;A 	< 	VALOR 	CMP #VALOR 	BCC
 ;INCLUIMOS LIBRERIAS ANEXAS
-	ICL 'BASE/SYS_EQUATES.M65'
-    org $2000
-DOS
-	JMP ($0C)
-@START
-	JSR DOS
-inicio
-//***********************************************
-// Vamos a poner una interrupciÛn VBI aquÌ
-//***********************************************
-	ldy #<VBI
-	ldx #>VBI
-	lda #$07	; Diferida
-	jsr SETVBV	;Setea
 
-;COLOR FONDO
-	MWA #$02 COLOR2
-	MVA #$02 COLOR4
-//***********************************************
-// BORRO CURSOR
-//***********************************************
-	LDA #$00
-	LDY #$02
-	STA ($58),Y
-;BUCLE
+	icl 'BASE/hardware.asm'
+    org $2000
+
+
+;Activa pantalla de titulos
+inicio
+    mwa #pant_titulos SDLSTL
+
+;Lee tecla de consola START
+leeconsola
+	lda CONSOL
+	cmp #6
+	beq jugar
+	jmp leeconsola
+
+;Activa pantalla del juego
+jugar
+    mwa #pant_juego SDLSTL
+
+;Looooppppppppppppppp
     jmp *
     
-    
 
-//***********************************************
-// seteamos reset
-//***********************************************
-COMIENZO
-	LDX # <@START
-	LDY # >@START
-	LDA #$03
-	STX $02
-	STY $03
-	STA $09
-	LDY #$FF
-	STY $08
-	INY   
-	STY $0244
-	JMP INICIO
-//***********************************************
-// funcionalidades
-// teclas especiales
-// START SELECT OPTION
-//***********************************************
-.proc VBI
-	lda consol
-	cmp #$06
-	beq esstart
-	cmp #$05
-	beq esselect
-	cmp #$03
-	beq esoption
-	jmp vbi
-esstart
-	jmp inicio
-esoption
-	jmp *
-esselect
-	jmp *
-	jmp $e462
-.endp
-    run COMIENZO
+
+
+;-----------------------------------------
+; Dise√±o de pantallas 
+;-----------------------------------------
+; Pantalla de titulos 
+pant_titulos
+:8	.by $70
+	.by $47
+	.wo nombre_juego
+:2	.by $70
+	.by $46
+	.wo autores
+	.by $06
+:4	.by $70
+	.by $46
+	.wo teclas
+
+; textos en la pantalla de titulos
+nombre_juego
+	.sb "     ASCURRETE      "
+autores
+	.sb "   por dogdark y    "
+	.sb "       ascrnet      "
+teclas
+	.sb "   presione start   "
+
+
+; Pantalla del juego 
+pant_juego
+:3	.by $70
+	.by $44
+	.wo nivel0
+:22	.by 04
+	.by $20
+	.by $46,
+	.wo barra_puntaje
+	.by $41 
+	.wo pant_juego	
+
+; textos de la pantalla del juego
+barra_puntaje
+	.sb "SC:0000000 T:00 L:00"
+
+nivel0
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+:40 .sb " "
+
+    run inicio
