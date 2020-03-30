@@ -48,13 +48,14 @@ pant_principal
 :3	.by $70
 	.by $46
 	.wo nombre_principal
-:2	.by $70
+:4	.by $70
 	.by $4d
 	.wo dibujo_principal
 :40	.by $0d
-:2	.by $70
+:4	.by $70
 	.by $46
 	.wo teclas_principal
+	.by $70
 	.by $06
 	.by $41
 	.wo pant_principal
