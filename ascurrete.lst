@@ -19,7 +19,7 @@ Source: C:\Users\dogdark\git\Ascurrete\BASE\hardware.asm
     10
     11 				;Activa pantalla de titulos
     12 				inicio
-    13 FFFF> 2000-2429> A9 2B +     mwa #pant_titulos SDLSTL
+    13 FFFF> 2000-2A89> A9 2B +     mwa #pant_principal SDLSTL
     14
     15 				;Lee tecla de consola START
     16 200A			leeconsola
@@ -30,7 +30,7 @@ Source: C:\Users\dogdark\git\Ascurrete\BASE\hardware.asm
     21
     22 				;Activa pantalla del juego
     23 2014			jugar
-    24 2014 A9 AB 8D 30 02 A9 +     mwa #pant_juego SDLSTL
+    24 2014 A9 0B 8D 30 02 A9 +     mwa #pant_juego SDLSTL
     25
     26 				;Lee tecla de consola SELECT
     27 201E			leeconsola1
@@ -44,74 +44,118 @@ Source: C:\Users\dogdark\git\Ascurrete\BASE\hardware.asm
     35
     36
     37 				;-----------------------------------------
-    38 				; Diseño de pantallas 
+    38 				; Diseno de pantallas 
     39 				;-----------------------------------------
-    40 				; Pantalla de titulos 
-    41 202B			pant_titulos
-    42 202B 70 70 70		:3	.by $70
-    43 202E 46				.by $46
-    44 202F 47 20			.wo nombre_juego
-    45 2031 70 70		:2	.by $70
-    46 2033 06				.by $06
-    47 2034 70 70 70 70		:4	.by $70
-    48 2038 46				.by $46
-    49 2039 6F 20			.wo autores
-    50 203B 06				.by $06
-    51 203C 70 70 70 70 70	:5	.by $70
-    52 2041 46				.by $46
-    53 2042 97 20			.wo teclas
-    54 2044 41				.by $41
-    55 2045 2B 20			.wo pant_titulos
-    56
-    57 				; textos en la pantalla de titulos
-    58 2047			nombre_juego
-    59 2047 62 79 00 64 6F 67 + 	.sb "by dogdark & ascrnet"
-    60 205B 00 00 00 0D 0D 00 + 	.sb "   -- ASCURRETE --  "
-    61 206F			autores
-    62 206F 00 00 00 00 00 00 + 	.sb "        2020        "
-    63 2083 00 00 00 00 00 00 + 	.sb "       ascrnet      "
-    64 2097			teclas
-    65 2097 00 00 00 70 72 65 + 	.sb "   presione start   "
-    66
-    67
-    68 				; Pantalla del juego 
-    69 20AB			pant_juego
-    70 20AB 70 70 70		:3	.by $70
-    71 20AE 44				.by $44
-    72 20AF E2 20			.wo nivel0
-    73 20B1 04 04 04 04 04 04 + :22	.by 04
-    74 20C7 20				.by $20
-    75 20C8 46				.by $46
-    76 20C9 CE 20			.wo barra_puntaje
-    77 20CB 41				.by $41 
-    78 20CC AB 20			.wo pant_juego	
-    79
-    80
-    81 				; textos de la pantalla del juego
-    82 20CE			barra_puntaje
-    83 20CE 33 23 1A 10 10 10 + 	.sb "SC:0000000 T:50 L:03"
-    84
-    85 20E2			nivel0
-    86 20E2 00 00 00 00 00 00 + :40 .sb " "
-    87 210A 00 00 00 00 00 00 + :40 .sb " "
-    88 2132 00 00 00 00 00 00 + :40 .sb " "
-    89 215A 00 00 00 00 00 00 + :40 .sb " "
-    90 2182 00 00 00 00 00 00 + :40 .sb " "
-    91 21AA 00 00 00 00 00 00 + :40 .sb " "
-    92 21D2 00 00 00 00 00 00 + :40 .sb " "
-    93 21FA 00 00 00 00 00 00 + :40 .sb " "
-    94 2222 00 00 00 00 00 00 + :40 .sb " "
-    95 224A 00 00 00 00 00 00 + :40 .sb " "
-    96 2272 00 00 00 00 00 00 + :40 .sb " "
-    97 229A 00 00 00 00 00 00 + :40 .sb " "
-    98 22C2 00 00 00 00 00 00 + :40 .sb " "
-    99 22EA 00 00 00 00 00 00 + :40 .sb " "
-   100 2312 00 00 00 00 00 00 + :40 .sb " "
-   101 233A 00 00 00 00 00 00 + :40 .sb " "
-   102 2362 00 00 00 00 00 00 + :40 .sb " "
-   103 238A 00 00 00 00 00 00 + :40 .sb " "
-   104 23B2 00 00 00 00 00 00 + :40 .sb " "
-   105 23DA 00 00 00 00 00 00 + :40 .sb " "
-   106 2402 00 00 00 00 00 00 + :40 .sb " "
+    40 				; La pantalla se estructura de la siguiente
+    41 				; manera
+    42 				; creadores en $46
+    43 				; dibujo de 80 columnas por 40 en $4d
+    44 				; nivel en $46
+    45 				; mensaje start en $46
+    46 				;
+    47 202B			pant_principal
+    48 202B 70 70 70		:3	.by $70
+    49 202E 46				.by $46
+    50 202F 67 20			.wo nombre_principal
+    51 2031 70 70		:2	.by $70
+    52 2033 4D				.by $4d
+    53 2034 7B 20			.wo dibujo_principal
+    54 2036 0D 0D 0D 0D 0D 0D + :40	.by $0d
+    55 205E 70 70		:2	.by $70
+    56 2060 46				.by $46
+    57 2061 E3 26			.wo teclas_principal
+    58 2063 06				.by $06
+    59 2064 41				.by $41
+    60 2065 2B 20			.wo pant_principal
+    61
+    62 				; textos en la pantalla de titulos
+    63 2067			nombre_principal
+    64 2067 E2 F9 80 E4 EF E7 + 	.sb +128,"by dogdark & ascrnet"
+    65 207B			dibujo_principal
+    66 207B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    67 20A3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    68 20CB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    69 20F3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    70 211B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    71 2143 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    72 216B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    73 2193 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    74 21BB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    75 21E3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    76 220B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    77 2233 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    78 225B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    79 2283 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    80 22AB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    81 22D3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    82 22FB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    83 2323 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    84 234B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    85 2373 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    86 239B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    87 23C3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    88 23EB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    89 2413 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    90 243B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    91 2463 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    92 248B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    93 24B3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    94 24DB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    95 2503 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    96 252B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    97 2553 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    98 257B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+    99 25A3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   100 25CB 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   101 25F3 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   102 261B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   103 2643 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   104 266B 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   105 2693 1B 1B 1B 1B 1B 1B + :40	.by $1b
+   106 26BB 1B 1B 1B 1B 1B 1B + :40	.by $1b
    107
-   108 02E0-02E1> 00 20		    run inicio
+   108 26E3			teclas_principal
+   109 26E3 00 00 00 00 00 00 + 	.sb "      NIVEL 00      "
+   110 26F7 00 00 33 34 21 32 + 	.Sb "  START PARA JUGAR  "
+   111
+   112 				; Pantalla del juego 
+   113 270B			pant_juego
+   114 270B 70 70 70		:3	.by $70
+   115 270E 44				.by $44
+   116 270F 42 27			.wo nivel0
+   117 2711 04 04 04 04 04 04 + :22	.by 04
+   118 2727 20				.by $20
+   119 2728 46				.by $46
+   120 2729 2E 27			.wo barra_puntaje
+   121 272B 41				.by $41 
+   122 272C 0B 27			.wo pant_juego	
+   123
+   124
+   125 				; textos de la pantalla del juego
+   126 272E			barra_puntaje
+   127 272E 33 23 1A 10 10 10 + 	.sb "SC:0000000 T:50 L:03"
+   128
+   129 2742			nivel0
+   130 2742 00 00 00 00 00 00 + :40 .sb " "
+   131 276A 00 00 00 00 00 00 + :40 .sb " "
+   132 2792 00 00 00 00 00 00 + :40 .sb " "
+   133 27BA 00 00 00 00 00 00 + :40 .sb " "
+   134 27E2 00 00 00 00 00 00 + :40 .sb " "
+   135 280A 00 00 00 00 00 00 + :40 .sb " "
+   136 2832 00 00 00 00 00 00 + :40 .sb " "
+   137 285A 00 00 00 00 00 00 + :40 .sb " "
+   138 2882 00 00 00 00 00 00 + :40 .sb " "
+   139 28AA 00 00 00 00 00 00 + :40 .sb " "
+   140 28D2 00 00 00 00 00 00 + :40 .sb " "
+   141 28FA 00 00 00 00 00 00 + :40 .sb " "
+   142 2922 00 00 00 00 00 00 + :40 .sb " "
+   143 294A 00 00 00 00 00 00 + :40 .sb " "
+   144 2972 00 00 00 00 00 00 + :40 .sb " "
+   145 299A 00 00 00 00 00 00 + :40 .sb " "
+   146 29C2 00 00 00 00 00 00 + :40 .sb " "
+   147 29EA 00 00 00 00 00 00 + :40 .sb " "
+   148 2A12 00 00 00 00 00 00 + :40 .sb " "
+   149 2A3A 00 00 00 00 00 00 + :40 .sb " "
+   150 2A62 00 00 00 00 00 00 + :40 .sb " "
+   151
+   152 02E0-02E1> 00 20		    run inicio

@@ -10,7 +10,7 @@
 
 ;Activa pantalla de titulos
 inicio
-    mwa #pant_titulos SDLSTL
+    mwa #pant_principal SDLSTL
 
 ;Lee tecla de consola START
 leeconsola
@@ -37,33 +37,77 @@ salir
 ;-----------------------------------------
 ; Diseno de pantallas 
 ;-----------------------------------------
-; Pantalla de titulos 
-pant_titulos
+; La pantalla se estructura de la siguiente
+; manera
+; creadores en $46
+; dibujo de 80 columnas por 40 en $4d
+; nivel en $46
+; mensaje start en $46
+;
+pant_principal
 :3	.by $70
 	.by $46
-	.wo nombre_juego
+	.wo nombre_principal
 :2	.by $70
-	.by $06
-:4	.by $70
+	.by $4d
+	.wo dibujo_principal
+:40	.by $0d
+:2	.by $70
 	.by $46
-	.wo autores
+	.wo teclas_principal
 	.by $06
-:5	.by $70
-	.by $46
-	.wo teclas
 	.by $41
-	.wo pant_titulos
+	.wo pant_principal
 
 ; textos en la pantalla de titulos
-nombre_juego
-	.sb "by dogdark & ascrnet"
-	.sb "   -- ASCURRETE --  "
-autores
-	.sb "        2020        "
-	.sb "       ascrnet      "
-teclas
-	.sb "   presione start   "
+nombre_principal
+	.sb +128,"by dogdark & ascrnet"
+dibujo_principal
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
+:40	.by $1b
 
+teclas_principal
+	.sb "      NIVEL 00      "
+	.Sb "  START PARA JUGAR  "
 
 ; Pantalla del juego 
 pant_juego
