@@ -39,10 +39,12 @@ salir
 ;-----------------------------------------
 ; Pantalla de titulos 
 pant_titulos
-:8	.by $70
-	.by $47
+:3	.by $70
+	.by $46
 	.wo nombre_juego
 :2	.by $70
+	.by $06
+:4	.by $70
 	.by $46
 	.wo autores
 	.by $06
@@ -54,9 +56,10 @@ pant_titulos
 
 ; textos en la pantalla de titulos
 nombre_juego
+	.sb "by dogdark & ascrnet"
 	.sb "   -- ASCURRETE --  "
 autores
-	.sb "   por dogdark y    "
+	.sb "        2020        "
 	.sb "       ascrnet      "
 teclas
 	.sb "   presione start   "
