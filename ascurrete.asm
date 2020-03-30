@@ -35,7 +35,7 @@ salir
 
 
 ;-----------------------------------------
-; Diseño de pantallas 
+; Diseno de pantallas 
 ;-----------------------------------------
 ; Pantalla de titulos 
 pant_titulos

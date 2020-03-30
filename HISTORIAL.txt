@@ -6,3 +6,6 @@ Agrego color de fondo pantalla y borde a gris
 agrego funcionalidad que elimina cursor de pantalla
 AGREGO FUNCIONALIDAD PARA SETEAR RESET (COMIENZO)
 AGREGO FUNCIONALIDAD VBI TECLAS CONSOLA START, OPTION, SELECT
+
+¿cual sera la funcionalidad del juego?
+será un juego de bola con topes?
