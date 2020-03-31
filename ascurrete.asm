@@ -5,19 +5,19 @@
 ;A 	< 	VALOR 	CMP #VALOR 	BCC
 
 	icl 'BASE/hardware.asm'
-    org $2000
+	org $2000
 
 
 ;Activa pantalla de titulos
 inicio
     mwa #pant_principal SDLSTL
+	mwa #>font CHBAS
 
-;Lee tecla de consola START
-leeconsola
-	lda CONSOL
-	cmp #6
+;Lee botón Joystick
+lee_boton
+	lda STRIG0
 	beq jugar
-	jmp leeconsola
+	jmp lee_boton
 
 ;Activa pantalla del juego
 jugar
@@ -63,6 +63,7 @@ pant_principal
 ; textos en la pantalla de titulos
 nombre_principal
 	.sb +128,"by dogdark & ascrnet"
+
 dibujo_principal
 :40	.by $1b
 :40	.by $1b
@@ -108,7 +109,7 @@ dibujo_principal
 
 teclas_principal
 	.sb "      NIVEL 00      "
-	.Sb "  START PARA JUGAR  "
+	.sb "  BOTON PARA JUGAR  "
 
 ; Pantalla del juego 
 pant_juego
@@ -128,6 +129,10 @@ barra_puntaje
 	.sb "SC:0000000 T:50 L:03"
 
 nivel0
+	.by $40,$41
+:38 .sb " "
+	.by $42,$43
+:38 .sb " "
 :40 .sb " "
 :40 .sb " "
 :40 .sb " "
@@ -147,7 +152,12 @@ nivel0
 :40 .sb " "
 :40 .sb " "
 :40 .sb " "
-:40 .sb " "
-:40 .sb " "
+
+; Zona de Memoria para cambiar el FONT
+; y se agrega el archivo fnt
+;---------------------------------------
+	org $4000
+font
+	ins "fuente.fnt"
 
     run inicio
