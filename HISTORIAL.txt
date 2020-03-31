@@ -9,3 +9,5 @@ AGREGO FUNCIONALIDAD VBI TECLAS CONSOLA START, OPTION, SELECT
 
 ¿cual sera la funcionalidad del juego?
 será un juego de bola con topes?
+31-03-2020 subi la imagen portada2.bmp, no la pude pasar con
+los programas que me dijiste.
