@@ -22,6 +22,12 @@ lee_boton
 ;Activa pantalla del juego
 jugar
     mwa #pant_juego SDLSTL
+	ldx #4
+pon_colores
+	lda colores_juego,x
+	sta COLOR0,x
+	dex
+	bpl pon_colores
 
 ;Lee tecla de consola SELECT
 leeconsola1
@@ -152,6 +158,13 @@ nivel0
 :40 .sb " "
 :40 .sb " "
 :40 .sb " "
+:40 .sb " "
+:40 .sb " "
+
+; Colores del juego
+;---------------------------------------
+colores_juego
+	.by $8e,$88,$84,$36
 
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
