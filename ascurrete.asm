@@ -36,14 +36,14 @@ pon_color_g
 	ldx #$00
 lee_datos_pm0
 	lda pelota0,x
-	sta PLAYER_0+115,x
+	sta PLAYER_0+114,x
 	inx
-	cpx #9
+	cpx #8
 	bne lee_datos_pm0
 	ldx #$00
 lee_datos_pm1
 	lda pelota1,x
-	sta PLAYER_1+115,x
+	sta PLAYER_1+114,x
 	inx
 	cpx #5
 	bne lee_datos_pm1	
@@ -57,8 +57,8 @@ lee_datos_pm1
 
 	mva #120 HPOSP0
 	mva #120 HPOSP0+1
-	mva #132 PCOLR0
-	mva #140 PCOLR0+1
+	mva #$c4 PCOLR0
+	mva #$cc PCOLR0+1
 
 
 ;Lee tecla de consola SELECT
@@ -78,7 +78,7 @@ salir
 pelota0
 	dta %00111100
 	dta %01111110
-:5	dta %11111111
+:4	dta %11111111
 	dta %01111110
 	dta %00111100
 
