@@ -191,7 +191,7 @@ nivel0
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
 ;---------------------------------------
-	org $5000
+	org $a000
 font
 	ins "fuente.fnt"
 
