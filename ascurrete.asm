@@ -72,7 +72,9 @@ pant_principal
 
 ; textos en la pantalla de titulos
 nombre_principal
-	.sb +128,"by dogdark & ascrnet"
+	.sb "by dogdark "
+	.sb +64,"& "
+	.sb "ascrnet"
 
 dibujo_principal
 	.by $0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$a0,$0,$0,$0,$0,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0
@@ -153,7 +155,9 @@ dibujo_principal
 	.by $aa,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0
 
 teclas_principal
-	.sb "      NIVEL 00      "
+	.sb "      NIVEL "
+nivel
+	.sb "00      "
 	.sb "  BOTON PARA JUGAR  "
 
 ; Pantalla del juego 
