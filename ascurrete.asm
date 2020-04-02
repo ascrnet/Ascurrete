@@ -13,7 +13,6 @@
 inicio
 	mwa #pant_principal SDLSTL
 	mwa #>font CHBAS
-	ldx #4
 	mva #$44 COLOR0		;$55
 	mva #$c8 COLOR1		;aa
 
@@ -33,6 +32,35 @@ pon_color_g
 	dex
 	bpl pon_color_g
 
+;Leer datos PM0 y PM1
+	ldx #$00
+lee_datos_pm0
+	lda pelota0,x
+	sta PLAYER_0+115,x
+	inx
+	cpx #8
+	bne lee_datos_pm0
+	ldx #$00
+lee_datos_pm1
+	lda pelota1,x
+	sta PLAYER_1+115,x
+	inx
+	cpx #4
+	bne lee_datos_pm1	
+
+;Active PM
+	mva #>PMDIR PMBASE
+	mva #3 GRACTL
+	mva #62 SDMCTL
+;	mva #192 NMIEN
+	mva #32 GPRIOR
+
+	mva #120 HPOSP0
+	mva #120 HPOSP0+1
+	mva #$aa PCOLR0
+	mva #$15 PCOLR0+1
+
+
 ;Lee tecla de consola SELECT
 leeconsola1
 	lda CONSOL
@@ -43,9 +71,25 @@ salir
 	jmp inicio
 
 
+;----------------------------------------
+; Diseño de Player y Misiles
+; pelota PM0 y PM1
+;----------------------------------------
+pelota0
+	dta %00111100
+	dta %01111110
+:4	dta %11111111
+	dta %01111110
+	dta %00111100
+
+pelota1
+	dta %00000000
+	dta %00011000
+	dta %00100000
+:2	dta %01000000
 
 ;-----------------------------------------
-; Diseno de pantallas 
+; Diseño de pantallas 
 ;-----------------------------------------
 ; La pantalla se estructura de la siguiente
 ; manera
