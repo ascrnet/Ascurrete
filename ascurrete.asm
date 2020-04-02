@@ -76,6 +76,42 @@ nombre_principal
 	.sb +64,"& "
 	.sb "ascrnet"
 
+teclas_principal
+	.sb "      NIVEL "
+nivel
+	.sb "00      "
+	.sb "  BOTON PARA JUGAR  "
+
+; Pantalla del juego 
+pant_juego
+:3	.by $70
+	.by $44
+	.wo nivel0
+:22	.by 04
+	.by $20
+	.by $46
+	.wo barra_puntaje
+	.by $41 
+	.wo pant_juego	
+
+; textos de la pantalla del juego
+barra_puntaje
+	.sb "  0000000   "
+	.by $7e
+	.sb "50 "
+	.by $7f
+	.sb "03 "
+
+; Colores del juego
+;---------------------------------------
+colores_juego
+	.by $8e,$88,$84,$36
+
+
+
+; bytes de dibujo de portada
+;
+;-----------------------------------
 dibujo_principal
 	.by $0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$a0,$0,$0,$0,$0,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0
 	.by $0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$2a,$aa,$aa,$0,$2a,$aa,$aa,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0
@@ -154,48 +190,15 @@ dibujo_principal
 	.by $aa,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0
 	.by $aa,$a0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0
 
-teclas_principal
-	.sb "      NIVEL "
-nivel
-	.sb "00      "
-	.sb "  BOTON PARA JUGAR  "
-
-; Pantalla del juego 
-pant_juego
-:3	.by $70
-	.by $44
-	.wo nivel0
-:22	.by 04
-	.by $20
-	.by $46
-	.wo barra_puntaje
-	.by $41 
-	.wo pant_juego	
-
-; textos de la pantalla del juego
-barra_puntaje
-	.sb "  0000000   "
-	.by $7e
-	.sb "50 "
-	.by $7f
-	.sb "03 "
-
-; Colores del juego
-;---------------------------------------
-colores_juego
-	.by $8e,$88,$84,$36
-
-
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
 	org $4000
 nivel0
 	ins "nivel0.map"
-
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
 ;---------------------------------------
-	org $a000
+	org $A000
 font
 	ins "fuente.fnt"
 
