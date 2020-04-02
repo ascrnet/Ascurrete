@@ -170,7 +170,11 @@ pant_juego
 
 ; textos de la pantalla del juego
 barra_puntaje
-	.sb "SC:0000000 T:50 L:03"
+	.sb "  0000000   "
+	.by $7e
+	.sb "50 "
+	.by $7f
+	.sb "03 "
 
 ; Colores del juego
 ;---------------------------------------
