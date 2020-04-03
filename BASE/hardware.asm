@@ -3,6 +3,7 @@
 ;-------------------------------------
 
 RTCLOK = $14
+ATRACT = $4d
 SDLSTL = $230
 SDMCTL = $22f
 GPRIOR = $26f
@@ -20,7 +21,9 @@ COLOR4 = $2c8
 CHBAS  = $2f4
 HPOSP0 = $d000
 HPOSP1 = $d001
+P0PF   = $d004
 GRACTL = $d01d
+HITCLR = $d01e  
 CONSOL = $d01f
 PMBASE = $d407
 NMIEN  = $d40e

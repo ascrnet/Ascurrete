@@ -42,23 +42,6 @@ pon_color_g
 	sta COLOR0,x
 	dex
 	bpl pon_color_g
-;---------------------------------------
-;Leer datos PM0 y PM1
-;---------------------------------------
-;	ldx #$00
-;lee_datos_pm0
-;	lda pelota0,x
-;	sta PLAYER_0+114,x
-;	inx					;incrementa 1 x
-;	cpx #8
-;	bne lee_datos_pm0	;si es diferente
-;	ldx #$00
-;lee_datos_pm1
-;	lda pelota1,x
-;	sta PLAYER_1+114,x
-;	inx					;incremente 1 x
-;	cpx #5				;si es 5
-;	bne lee_datos_pm1	;si es diferente vaya a lee datos pm1
 
 ;---------------------------------------
 ;Active PM
@@ -68,8 +51,6 @@ pon_color_g
 	mva #62 SDMCTL
 	mva #32 GPRIOR
 
-;	mva #120 HPOSP0
-;	mva #120 HPOSP0+1
 	mva #100 pelota_x
 	mva #70 pelota_y
 	mva #$c4 PCOLR0
@@ -84,6 +65,9 @@ pon_color_g
 ;Lee el Joystick
 ;--------------------------------------
 lee_joy
+	lda #0
+	sta HITCLR
+	sta ATRACT
 	lda STICK0
 	lsr
 	bcs no_arriba
@@ -110,27 +94,38 @@ no_derecha
 mover_arriba
 	dec pelota_y
 	pausa
+	lda P0PF
+	bne stop_arriba
 	lda pelota_y
 	cmp #40	
 	bne mover_arriba
+stop_arriba
 	jmp vuelve_leer
 mover_abajo
 	inc pelota_y
 	pausa
+	lda P0PF
+	bne stop_abajo
 	lda pelota_y
 	cmp #200
 	bne mover_abajo
+stop_abajo
 	jmp vuelve_leer
 mover_izquierda
 	dec pelota_x
 	pausa
+	lda P0PF
+	bne stop_izq
 	lda pelota_x
 	cmp #40	
 	bne mover_izquierda
+stop_izq
 	jmp vuelve_leer
 mover_derecha
 	inc pelota_x
 	pausa
+	lda P0PF
+	bne vuelve_leer
 	lda pelota_x
 	cmp #200
 	bne mover_derecha
