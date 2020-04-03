@@ -2,8 +2,8 @@
 ; Función de pausa
 ;----------------------------
 
-.macro	pausa
-	ift :1 == 0
+.macro pausa
+	ift :0 == 0
 		lda:cmp:req 20
 	els
 		lda RTCLOK

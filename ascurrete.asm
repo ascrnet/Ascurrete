@@ -83,26 +83,59 @@ pon_color_g
 ;--------------------------------------
 ;Lee el Joystick
 ;--------------------------------------
-loop
+lee_joy
 	lda STICK0
 	lsr
 	bcs no_arriba
-	dec pelota_y
+	jmp mover_arriba
 no_arriba
 	lsr
 	bcs no_abajo
-	inc pelota_y
+	jmp mover_abajo
 no_abajo
 	lsr
 	bcs no_izquierda
-	dec pelota_x
+	jmp mover_izquierda	
 no_izquierda
 	lsr
 	bcs no_derecha
-	inc pelota_x
+	jmp mover_derecha	
 no_derecha
-	pausa 2
-	jmp loop
+	jmp lee_joy
+
+;--------------------------------------
+;Mover la pelota según la direccion
+;leida del Joystick
+;--------------------------------------
+mover_arriba
+	dec pelota_y
+	pausa
+	lda pelota_y
+	cmp #40	
+	bne mover_arriba
+	jmp vuelve_leer
+mover_abajo
+	inc pelota_y
+	pausa
+	lda pelota_y
+	cmp #200
+	bne mover_abajo
+	jmp vuelve_leer
+mover_izquierda
+	dec pelota_x
+	pausa
+	lda pelota_x
+	cmp #40	
+	bne mover_izquierda
+	jmp vuelve_leer
+mover_derecha
+	inc pelota_x
+	pausa
+	lda pelota_x
+	cmp #200
+	bne mover_derecha
+vuelve_leer
+	jmp lee_joy
 
 ;---------------------------------------
 ;Lee tecla de consola SELECT
@@ -117,7 +150,7 @@ salir
 
 ;-----------------------------------------
 ;Rutina VBD para el movimiento 
-; de la pelota
+;de la pelota en la pantalla
 ;-----------------------------------------
 vbd
 	ldx #$00
