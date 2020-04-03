@@ -249,7 +249,7 @@ dibujo_principal
 ;---------------------------------------
 	org $4000
 nivel0
-	ins "nivel0.map"
+	ins "niveles/nivel0.map"
 ;---------------------------------------
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
