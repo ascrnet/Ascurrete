@@ -14,9 +14,18 @@
 inicio
 	mwa #pant_principal SDLSTL
 	mwa #>font CHBAS
-	mva #14 COLOR0		;$55
-	mva #180 COLOR1		;aa
-	mva #50 COLOR2
+;---------------------------------------
+;activa color de la portada
+;---------------------------------------
+	ldx #2
+doy_color_pantalla
+	lda colores_pantalla,x
+	sta COLOR0,x
+	dex
+	bpl doy_color_pantalla
+;	mva #14 COLOR0		;$55
+;	mva #180 COLOR1		;aa
+;	mva #50 COLOR2
 ;---------------------------------------
 ;Lee botón Joystick
 ;---------------------------------------
@@ -30,7 +39,7 @@ lee_boton
 ;---------------------------------------
 jugar
 	mwa #pant_juego SDLSTL
-	ldx #4
+	ldx #3
 pon_color_g
 	lda colores_juego,x
 	sta COLOR0,x
@@ -141,7 +150,10 @@ barra_puntaje
 ;---------------------------------------
 colores_juego
 	.by $8e,$88,$84,$36
-
+colores_pantalla
+	.by $0e,$b4,$32	
+;	.by 14,180,50
+	
 ;---------------------------------------
 ; bytes de dibujo de portada
 ;
