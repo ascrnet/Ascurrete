@@ -8,25 +8,16 @@
 	icl "variables.asm"
 	org $2000
 
-;---------------------------------------
-;Activa pantalla de titulos
-;---------------------------------------
+;Inicio del juego
 inicio
-	mwa #pant_principal SDLSTL
 	mwa #>font CHBAS
-;---------------------------------------
-;activa color de la portada
-;---------------------------------------
-	ldx #2
-doy_color_pantalla
-	lda colores_pantalla,x
-	sta COLOR0,x
-	dex
-	bpl doy_color_pantalla
-;	mva #14 COLOR0		;$55
-;	mva #180 COLOR1		;aa
-;	mva #50 COLOR2
-;---------------------------------------
+
+;Activa pantalla de titulos
+titulos
+	mwa #pant_principal SDLSTL
+	mva #$44 COLOR0		;$55
+	mva #$c8 COLOR1		;aa
+
 ;Lee botón Joystick
 ;---------------------------------------
 lee_boton
@@ -85,7 +76,7 @@ leeconsola1
 	beq salir
 	jmp leeconsola1
 salir
-	jmp inicio
+	jmp titulos
 
 
 ;----------------------------------------
