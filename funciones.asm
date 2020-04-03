@@ -13,5 +13,5 @@ limpiar
 	inc limpiar+2
 	dey
 	bne limpiarpmg
-    rts
+	rts
 .endp
