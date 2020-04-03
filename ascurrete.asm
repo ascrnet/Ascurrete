@@ -15,8 +15,12 @@ inicio
 ;Activa pantalla de titulos
 titulos
 	mwa #pant_principal SDLSTL
-	mva #$44 COLOR0		;$55
-	mva #$c8 COLOR1		;aa
+	ldx #2
+pongo_color_portada
+	lda colores_pantalla,x
+	sta COLOR0,x
+	dex
+	bpl pongo_color_portada 
 
 ;Lee botón Joystick
 ;---------------------------------------
