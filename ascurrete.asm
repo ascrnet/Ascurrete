@@ -8,22 +8,26 @@
 	icl "variables.asm"
 	org $2000
 
-
+;---------------------------------------
 ;Activa pantalla de titulos
+;---------------------------------------
 inicio
 	mwa #pant_principal SDLSTL
 	mwa #>font CHBAS
 	mva #14 COLOR0		;$55
 	mva #180 COLOR1		;aa
 	mva #50 COLOR2
-
+;---------------------------------------
 ;Lee botón Joystick
+;---------------------------------------
 lee_boton
 	lda STRIG0
 	beq jugar
 	jmp lee_boton
 
+;---------------------------------------
 ;Activa pantalla del juego
+;---------------------------------------
 jugar
 	mwa #pant_juego SDLSTL
 	ldx #4
@@ -32,28 +36,30 @@ pon_color_g
 	sta COLOR0,x
 	dex
 	bpl pon_color_g
-
+;---------------------------------------
 ;Leer datos PM0 y PM1
+;---------------------------------------
 	ldx #$00
 lee_datos_pm0
 	lda pelota0,x
 	sta PLAYER_0+114,x
-	inx
+	inx					;incrementa 1 x
 	cpx #8
-	bne lee_datos_pm0
+	bne lee_datos_pm0	;si es diferente
 	ldx #$00
 lee_datos_pm1
 	lda pelota1,x
 	sta PLAYER_1+114,x
-	inx
-	cpx #5
-	bne lee_datos_pm1	
+	inx					;incremente 1 x
+	cpx #5				;si es 5
+	bne lee_datos_pm1	;si es diferente vaya a lee datos pm1
 
+;---------------------------------------
 ;Active PM
+;---------------------------------------
 	mva #>PMDIR PMBASE
 	mva #3 GRACTL
 	mva #62 SDMCTL
-;	mva #192 NMIEN
 	mva #32 GPRIOR
 
 	mva #120 HPOSP0
@@ -61,8 +67,9 @@ lee_datos_pm1
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR0+1
 
-
+;---------------------------------------
 ;Lee tecla de consola SELECT
+;---------------------------------------
 leeconsola1
 	lda CONSOL
 	cmp #5
@@ -106,8 +113,9 @@ pant_principal
 :93	.by $0d
 	.by $41
 	.wo pant_principal
-
+;---------------------------------------
 ; Pantalla del juego 
+;---------------------------------------
 pant_juego
 :3	.by $70
 	.by $44
@@ -119,24 +127,25 @@ pant_juego
 	.by $41 
 	.wo pant_juego	
 
+;---------------------------------------
 ; textos de la pantalla del juego
+;---------------------------------------
 barra_puntaje
 	.sb "  0000000   "
 	.by $7e
 	.sb "50 "
 	.by $7f
 	.sb "03 "
-
+;---------------------------------------
 ; Colores del juego
 ;---------------------------------------
 colores_juego
 	.by $8e,$88,$84,$36
 
-
-
+;---------------------------------------
 ; bytes de dibujo de portada
 ;
-;-----------------------------------
+;---------------------------------------
 dibujo_principal
 	.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	.BYTE $FF,$FF,$FF,$FF,$F,$FF,$FF,$FF,$FC,$3F,$FF,$FF,$FF,$C3,$FF,$FF,$F3,$FC,$3F,$FF,$FF,$FF,$C3,$FF,$FF,$FF,$FC,$3F,$FF,$FF,$FF,$C3,$FF,$FF,$CF,$FC,$3F,$FF,$FF,$FC
@@ -235,12 +244,13 @@ dibujo_principal
 	.BYTE $FF,$FC,$3F,$FF,$FF,$FF,$00,$3F,$FF,$FF,$FF,$F,$FF,$FF,$FF,$F0,$FF,$FF,$FF,$FF,$F,$FF,$FF,$FF,$F0,$3F,$FF,$FF,$FF,$C3,$FF,$FF,$FF,$F0,$FF,$FF,$FF,$FF,$3F,$FC
 	.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
-
+;---------------------------------------
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
 	org $4000
 nivel0
 	ins "nivel0.map"
+;---------------------------------------
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
 ;---------------------------------------
