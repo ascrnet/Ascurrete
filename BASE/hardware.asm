@@ -2,9 +2,11 @@
 ; del Hardware del ATARI XL-XE
 ;-------------------------------------
 
+RTCLOK = $14
 SDLSTL = $230
 SDMCTL = $22f
 GPRIOR = $26f
+STICK0 = $278
 STRIG0 = $284
 PCOLR0 = $2c0
 PCOLR1 = $2c1
@@ -17,10 +19,13 @@ COLOR3 = $2c7
 COLOR4 = $2c8
 CHBAS  = $2f4
 HPOSP0 = $d000
+HPOSP1 = $d001
 GRACTL = $d01d
 CONSOL = $d01f
 PMBASE = $d407
 NMIEN  = $d40e
+SETVBV = $e45C
+XITVBV = $e462
 
 
 

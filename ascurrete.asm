@@ -6,7 +6,7 @@
 
 	icl "BASE/hardware.asm"
 	icl "variables.asm"
-;	icl "funciones.asm"
+	icl "funciones.asm"
 
 	org $2000
 
@@ -45,20 +45,20 @@ pon_color_g
 ;---------------------------------------
 ;Leer datos PM0 y PM1
 ;---------------------------------------
-	ldx #$00
-lee_datos_pm0
-	lda pelota0,x
-	sta PLAYER_0+114,x
-	inx					;incrementa 1 x
-	cpx #8
-	bne lee_datos_pm0	;si es diferente
-	ldx #$00
-lee_datos_pm1
-	lda pelota1,x
-	sta PLAYER_1+114,x
-	inx					;incremente 1 x
-	cpx #5				;si es 5
-	bne lee_datos_pm1	;si es diferente vaya a lee datos pm1
+;	ldx #$00
+;lee_datos_pm0
+;	lda pelota0,x
+;	sta PLAYER_0+114,x
+;	inx					;incrementa 1 x
+;	cpx #8
+;	bne lee_datos_pm0	;si es diferente
+;	ldx #$00
+;lee_datos_pm1
+;	lda pelota1,x
+;	sta PLAYER_1+114,x
+;	inx					;incremente 1 x
+;	cpx #5				;si es 5
+;	bne lee_datos_pm1	;si es diferente vaya a lee datos pm1
 
 ;---------------------------------------
 ;Active PM
@@ -68,10 +68,41 @@ lee_datos_pm1
 	mva #62 SDMCTL
 	mva #32 GPRIOR
 
-	mva #120 HPOSP0
-	mva #120 HPOSP0+1
+;	mva #120 HPOSP0
+;	mva #120 HPOSP0+1
+	mva #100 pelota_x
+	mva #70 pelota_y
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR0+1
+
+	lda #$07	
+	ldx #>vbd
+	ldy #<vbd
+	jsr SETVBV
+
+;--------------------------------------
+;Lee el Joystick
+;--------------------------------------
+loop
+	lda STICK0
+	lsr
+	bcs no_arriba
+	dec pelota_y
+no_arriba
+	lsr
+	bcs no_abajo
+	inc pelota_y
+no_abajo
+	lsr
+	bcs no_izquierda
+	dec pelota_x
+no_izquierda
+	lsr
+	bcs no_derecha
+	inc pelota_x
+no_derecha
+	pausa 2
+	jmp loop
 
 ;---------------------------------------
 ;Lee tecla de consola SELECT
@@ -84,6 +115,40 @@ leeconsola1
 salir
 	jmp titulos
 
+;-----------------------------------------
+;Rutina VBD para el movimiento 
+; de la pelota
+;-----------------------------------------
+vbd
+	ldx #$00
+	txa
+limpia_pm
+	sta PLAYER_0,x
+	sta PLAYER_1,x
+	inx
+	bne limpia_pm
+	ldx pelota_y
+	ldy #$00
+lee_datos_pm0
+	lda pelota0,y
+	sta PLAYER_0,x
+	iny	
+	inx			
+	cpy #8
+	bne lee_datos_pm0
+	ldx pelota_y
+	ldy #$00
+lee_datos_pm1
+	lda pelota1,y
+	sta PLAYER_1,x
+	iny
+	inx			
+	cpy #5
+	bne lee_datos_pm1
+	lda pelota_x
+	sta HPOSP0
+	sta HPOSP1
+	jmp XITVBV
 
 ;----------------------------------------
 ; Diseño de Player y Misiles
