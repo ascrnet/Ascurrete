@@ -8,11 +8,13 @@
 	icl "variables.asm"
 	org $2000
 
+;Inicio del juego
+inicio
+	mwa #>font CHBAS
 
 ;Activa pantalla de titulos
-inicio
+titulos
 	mwa #pant_principal SDLSTL
-	mwa #>font CHBAS
 	mva #$44 COLOR0		;$55
 	mva #$c8 COLOR1		;aa
 
@@ -68,7 +70,7 @@ leeconsola1
 	beq salir
 	jmp leeconsola1
 salir
-	jmp inicio
+	jmp titulos
 
 
 ;----------------------------------------
