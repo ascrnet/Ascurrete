@@ -209,7 +209,7 @@ pant_principal
 :3	.by $70
 	.by $4d
 	.wo dibujo_principal
-:93	.by $0d
+:89	.by $0d
 	.by $41
 	.wo pant_principal
 ;---------------------------------------
