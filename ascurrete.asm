@@ -10,6 +10,8 @@
 
 	org $2000
 
+
+
 ;Inicio del juego
 inicio
 	mwa #>font CHBAS
@@ -50,7 +52,7 @@ pon_color_g
 	mva #3 GRACTL
 	mva #62 SDMCTL
 	mva #32 GPRIOR
-
+;
 	mva #100 pelota_x
 	mva #70 pelota_y
 	mva #$c4 PCOLR0
@@ -131,10 +133,7 @@ mover_derecha
 	cmp #200
 	bne mover_derecha
 vuelve_leer
-	jmp vuelve_leer
 	jmp lee_joy
-esfin
-	arcoiris
 
 ;---------------------------------------
 ;Lee tecla de consola SELECT
