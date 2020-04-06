@@ -60,7 +60,6 @@ pon_color_g
 	ldx #>vbd
 	ldy #<vbd
 	jsr SETVBV
-
 ;--------------------------------------
 ;Lee el Joystick
 ;--------------------------------------
@@ -95,9 +94,11 @@ mover_arriba
 	dec pelota_y
 	pausa
 	lda P0PF
-	bne stop_arriba
+	bne stop_arriba	;<>
 	lda pelota_y
-	cmp #40	
+;fijamos si topa arriba dara un error
+	cmp #40
+;	beq esfin
 	bne mover_arriba
 stop_arriba
 	jmp vuelve_leer
@@ -130,7 +131,10 @@ mover_derecha
 	cmp #200
 	bne mover_derecha
 vuelve_leer
+	jmp vuelve_leer
 	jmp lee_joy
+esfin
+	arcoiris
 
 ;---------------------------------------
 ;Lee tecla de consola SELECT
