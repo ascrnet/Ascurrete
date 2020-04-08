@@ -52,9 +52,10 @@ pon_color_g
 	mva #3 GRACTL
 	mva #62 SDMCTL
 	mva #34 GPRIOR
-;
-	mva #100 pelota_x
-	mva #70 pelota_y
+
+;	mva #48 pelota_x ; por 8 pixles por caracter
+;	mva #36 pelota_y; por 16 pixles por caracter
+	pone_pelota 10 5
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR0+1
 
@@ -100,8 +101,7 @@ mover_arriba
 	lda pelota_y
 	cmp #40
 	bne mover_arriba
-	mva #100 pelota_x
-	mva #70 pelota_y
+	pone_pelota 10 5
 	jmp vuelve_leer
 stop_arriba
 	inc pelota_y
@@ -115,8 +115,7 @@ mover_abajo
 	lda pelota_y
 	cmp #200
 	bne mover_abajo
-	mva #100 pelota_x
-	mva #70 pelota_y
+	pone_pelota 10 5
 	jmp vuelve_leer
 stop_abajo
 	dec pelota_y
@@ -130,8 +129,7 @@ mover_izquierda
 	lda pelota_x
 	cmp #40	
 	bne mover_izquierda
-	mva #100 pelota_x
-	mva #70 pelota_y
+	pone_pelota 10 5
 	jmp vuelve_leer
 stop_izquierda
 	inc pelota_x
@@ -145,8 +143,7 @@ mover_derecha
 	lda pelota_x
 	cmp #200
 	bne mover_derecha
-	mva #100 pelota_x
-	mva #70 pelota_y
+	pone_pelota 10 5
 	jmp vuelve_leer
 stop_derecha
 	dec pelota_x
@@ -374,6 +371,7 @@ dibujo_principal
 	org $4000
 nivel0
 	ins "niveles/nivel0.map"
+
 ;---------------------------------------
 ; Zona de Memoria para cambiar el FONT
 ; y se agrega el archivo fnt
