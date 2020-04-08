@@ -51,7 +51,7 @@ pon_color_g
 	mva #>PMDIR PMBASE
 	mva #3 GRACTL
 	mva #62 SDMCTL
-	mva #32 GPRIOR
+	mva #34 GPRIOR
 ;
 	mva #100 pelota_x
 	mva #70 pelota_y
@@ -96,13 +96,16 @@ mover_arriba
 	dec pelota_y
 	pausa
 	lda P0PF
-	bne stop_arriba	;<>
+	bne stop_arriba	
 	lda pelota_y
-;fijamos si topa arriba dara un error
 	cmp #40
-;	beq esfin
 	bne mover_arriba
+	mva #100 pelota_x
+	mva #70 pelota_y
+	jmp vuelve_leer
 stop_arriba
+	inc pelota_y
+	inc pelota_y
 	jmp vuelve_leer
 mover_abajo
 	inc pelota_y
@@ -112,26 +115,42 @@ mover_abajo
 	lda pelota_y
 	cmp #200
 	bne mover_abajo
+	mva #100 pelota_x
+	mva #70 pelota_y
+	jmp vuelve_leer
 stop_abajo
+	dec pelota_y
+	dec pelota_y
 	jmp vuelve_leer
 mover_izquierda
 	dec pelota_x
 	pausa
 	lda P0PF
-	bne stop_izq
+	bne stop_izquierda
 	lda pelota_x
 	cmp #40	
 	bne mover_izquierda
-stop_izq
+	mva #100 pelota_x
+	mva #70 pelota_y
+	jmp vuelve_leer
+stop_izquierda
+	inc pelota_x
+	inc pelota_x
 	jmp vuelve_leer
 mover_derecha
 	inc pelota_x
 	pausa
 	lda P0PF
-	bne vuelve_leer
+	bne stop_derecha
 	lda pelota_x
 	cmp #200
 	bne mover_derecha
+	mva #100 pelota_x
+	mva #70 pelota_y
+	jmp vuelve_leer
+stop_derecha
+	dec pelota_x
+	dec pelota_x	
 vuelve_leer
 	jmp lee_joy
 
