@@ -45,6 +45,11 @@ pon_color_g
 	dex
 	bpl pon_color_g
 
+;--------------------------------------
+; pinta el nivel en la pantalla
+;---------------------------------------
+;	jmp * 
+
 ;---------------------------------------
 ;Active PM
 ;---------------------------------------
@@ -53,8 +58,6 @@ pon_color_g
 	mva #62 SDMCTL
 	mva #34 GPRIOR
 
-;	mva #48 pelota_x ; por 8 pixles por caracter
-;	mva #36 pelota_y; por 16 pixles por caracter
 	pone_pelota 10 5
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR0+1
@@ -237,9 +240,9 @@ pant_principal
 pant_juego
 :3	.by $70
 	.by $44
-	.wo nivel0
-:22	.by 04
-	.by $20
+	.wo pant_intermedia
+:21	.by 04
+	.by $30
 	.by $46
 	.wo barra_puntaje
 	.by $41 
@@ -369,8 +372,9 @@ dibujo_principal
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
 	org $4000
-nivel0
+pant_intermedia
 	ins "niveles/nivel0.map"
+;	icl "niveles.asm"
 
 ;---------------------------------------
 ; Zona de Memoria para cambiar el FONT
