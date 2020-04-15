@@ -4,7 +4,7 @@
 
 .macro pausa
 	ift :0 == 0
-		lda:cmp:req 20
+		lda:cmp:req RTCLOK
 	els
 		lda RTCLOK
 		add #:1
