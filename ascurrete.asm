@@ -48,7 +48,10 @@ pon_color_g
 ;--------------------------------------
 ; pinta el nivel en la pantalla
 ;---------------------------------------
-;	jmp * 
+
+	pausa 30
+	limpia_puzzle
+	jmp * 
 
 ;---------------------------------------
 ;Active PM
@@ -226,7 +229,6 @@ pelota1
 ; dibujo de 80 columnas por 40 en $4E
 ; nivel en $46
 ; mensaje start en $46
-;
 pant_principal
 :3	.by $70
 	.by $4d
@@ -234,13 +236,14 @@ pant_principal
 :89	.by $0d
 	.by $41
 	.wo pant_principal
+
 ;---------------------------------------
 ; Pantalla del juego 
 ;---------------------------------------
 pant_juego
 :3	.by $70
 	.by $44
-	.wo pant_intermedia
+	.wo pant_puzzle
 :21	.by 04
 	.by $30
 	.by $46
@@ -257,6 +260,7 @@ barra_puntaje
 	.sb "50 "
 	.by $7f
 	.sb "03 "
+
 ;---------------------------------------
 ; Colores del juego
 ;---------------------------------------
@@ -268,7 +272,6 @@ colores_pantalla
 	
 ;---------------------------------------
 ; bytes de dibujo de portada
-;
 ;---------------------------------------
 dibujo_principal
 	.by $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -372,9 +375,9 @@ dibujo_principal
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
 	org $4000
-pant_intermedia
-	ins "niveles/nivel0.map"
-;	icl "niveles.asm"
+;pant_intermedia
+;	ins "niveles/nivel0.map"
+	icl "niveles.asm"
 
 ;---------------------------------------
 ; Zona de Memoria para cambiar el FONT

@@ -17,3 +17,6 @@ direccion .ds 1
 pelota_x  .ds 1
 pelota_y  .ds 1
 
+; Posición X de la pantalla
+pant_x  .ds 2
+
