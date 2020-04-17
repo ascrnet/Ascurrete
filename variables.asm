@@ -20,3 +20,6 @@ pelota_y  .ds 1
 ; Posición X de la pantalla
 pant_x  .ds 2
 
+; Variable de puntaje 7 Bytes 
+puntaje .ds 7
+

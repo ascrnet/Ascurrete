@@ -48,8 +48,9 @@ pon_color_g
 ;--------------------------------------
 ; pinta el nivel en la pantalla
 ;---------------------------------------
-
+	limpia_puntaje
 	pausa 30
+	actualiza_puntaje
 	limpia_puzzle
 	jmp * 
 

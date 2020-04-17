@@ -45,3 +45,44 @@ limpiar
 	bne limpiar
 	rts
 .endp
+
+;-------------------------------------
+; Limpia variable de puntaje
+;-------------------------------------
+.proc limpia_puntaje
+	lda #0
+	ldx #6
+limpia_puntaje
+	sta puntaje,x
+	dex
+	bpl limpia_puntaje
+	rts
+.endp
+
+;--------------------------------------
+; Actualiza el puntaje de 1 en 1
+; pero se ve en pantalla de 10 en 10
+;--------------------------------------
+.proc actualiza_puntaje
+	ldx #5
+digito2
+	lda puntaje,x 
+	add #1
+	cmp #10
+	bne digito1
+	mva #0 puntaje,x 
+	dex
+	jmp digito2
+digito1 
+	sta puntaje,x 
+	
+; Actuliza la pantalla
+	ldx #6
+act_puntaje
+	lda puntaje,x
+	ora #$10
+	sta barra_puntaje+2,x
+	dex
+	bpl act_puntaje
+	rts
+.endp
