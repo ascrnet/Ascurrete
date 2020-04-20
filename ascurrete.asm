@@ -9,7 +9,7 @@
 	icl "funciones.asm"
 
 	org $2000
-puntero_nivel	= $cd
+puntero_nivel	= $cb
 ;Inicio del juego
 inicio
 ;reseteamos nivel a 0
@@ -74,7 +74,8 @@ pon_color_g
 ;--------------------------------------
 ; pinta el nivel en la pantalla
 ;---------------------------------------
-	
+	lda #0
+	sta nivel
 	limpia_puntaje
 
 	ldy #0
@@ -90,7 +91,7 @@ copy
 	actualiza_puntaje
 ;	limpia_puzzle
 
-
+	jsr muestro_nivel_juego
 	jmp * 
 
 ;---------------------------------------
@@ -286,6 +287,8 @@ pant_principal
 ;---------------------------------------
 pant_juego
 :3	.by $70
+	.by $46
+	.wo barra_nivel
 	.by $44
 	.wo pant_puzzle
 :21	.by 04
@@ -298,6 +301,10 @@ pant_juego
 ;---------------------------------------
 ; textos de la pantalla del juego
 ;---------------------------------------
+barra_nivel
+	.sb "      NIVEL "
+nivel_juego
+	.sb "00      "
 barra_puntaje
 	.sb "  0000000   "
 	.by $7e
@@ -439,6 +446,12 @@ reseter_nivel
 	lda #$10
 	sta puntero_nivel
 	sta puntero_nivel+1
+	rts
+muestro_nivel_juego
+	lda puntero_nivel+1
+	sta nivel_juego+1
+	lda puntero_nivel
+	sta nivel_juego
 	rts
 ;---------------------------------------
 ; Zona de memoria para el Puzzle
