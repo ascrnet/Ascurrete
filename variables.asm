@@ -17,9 +17,14 @@ direccion .ds 1
 pelota_x  .ds 1
 pelota_y  .ds 1
 
-; Posición X de la pantalla
-pant_x  .ds 2
-
-; Variable de puntaje 7 Bytes 
+; Variable de puntaje
 puntaje .ds 7
+
+; Variables temporales
+temp1   .ds 2
+temp2   .ds 2
+temp3   .ds 2
+
+; Variable de nivel del juego 
+nivel   .ds 1
 

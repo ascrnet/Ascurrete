@@ -48,10 +48,23 @@ pon_color_g
 ;--------------------------------------
 ; pinta el nivel en la pantalla
 ;---------------------------------------
+	mva #0 nivel
 	limpia_puntaje
-	pausa 30
+
+	ldy #0
+copy  
+	mva nivel0,y nivel_temp,y+
+	cpy #.len nivel_temp
+	bne copy
+
+	mwa #pant_puzzle temp1
+	crea_nivel
+
+;	pausa 30
 	actualiza_puntaje
-	limpia_puzzle
+;	limpia_puzzle
+
+
 	jmp * 
 
 ;---------------------------------------
@@ -168,6 +181,7 @@ leeconsola1
 	jmp leeconsola1
 salir
 	jmp titulos
+
 
 ;-----------------------------------------
 ;Rutina VBD para el movimiento 
@@ -376,7 +390,7 @@ dibujo_principal
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
 	org $4000
-;pant_intermedia
+;pant_puzzle
 ;	ins "niveles/nivel0.map"
 	icl "niveles.asm"
 

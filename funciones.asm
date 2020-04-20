@@ -86,3 +86,96 @@ act_puntaje
 	bpl act_puntaje
 	rts
 .endp
+
+;------------------------------
+; Calcula los objectos 
+; del nivel
+;------------------------------
+.proc crea_nivel
+	mva #0 xsur
+	mva #0 ysur
+	mva #4 idx 
+crea	
+	ldx idx
+	lda nivel_temp,x
+	cmp #' '
+	beq obj1
+	cmp #'1'
+	beq obj2
+    jmp *
+obj1
+	mva #0 temp2
+	jmp obj_fin
+obj2 
+	mva #1 temp2
+obj_fin
+	pant_objectos
+	inc xsur
+	lda xsur
+	cmp #20
+	beq xlinea
+	add16 temp1 #2
+	inc idx
+	jmp crea
+	
+xlinea	
+	add16 temp1 #2*40-19*2 
+	inc idx
+	mva #0 xsur
+	inc ysur
+	lda ysur
+	cmp #11
+	jne crea
+
+xsur	
+	.by 0
+ysur	
+	.by 0
+idx		
+	.by 0
+.endp
+
+;-----------------------------
+; Pinta objectos en pantalla
+; 2x2
+;-----------------------------
+.proc pant_objectos
+	lda temp2
+	asl
+	asl
+	tax
+	ldy #0
+	lda objectos,x
+	sta (temp1),y
+	iny
+	inx
+	lda objectos,x
+	sta (temp1),y
+	ldy #40
+	inx
+	lda objectos,x
+	sta (temp1),y
+	iny
+	inx
+	lda objectos,x
+	sta (temp1),y
+	rts
+
+; Diseño de objectos 2x2 caracteres
+objectos
+	.by $0,$0,$0,$0
+    .by $40,$41,$42,$43
+.endp
+
+;----------------------------------
+; Suma 16 bytes
+;----------------------------------
+.macro	add16
+	lda :1
+	add :2
+	sta :1
+	bcc exitadd
+	inc :1+1
+exitadd	
+.endm
+
