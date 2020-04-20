@@ -202,7 +202,7 @@ exitadd
 	sta temp1+1
 	ldy #0
 copy  
-	mva temp1,y nivel_temp,y+
+	mva (temp1),y nivel_temp,y+
 	cpy #.len nivel_temp
 	bne copy
 	mwa #pant_puzzle temp1
