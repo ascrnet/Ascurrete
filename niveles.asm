@@ -30,7 +30,7 @@ pant_puzzle
 
 ; Listado de niveles
 niveles 
-    .word nivel0,nivel1,nivel0
+    .word nivel0,nivel1,nivel2
 
 ; Niveles - 20x11 caracteres
 ; x1,y1 - pelota
@@ -51,17 +51,17 @@ nivel_temp
 
 nivel0
     .by 0,0,0,0
-    dta '1                  1'
-    dta '                    '
-    dta '                    '
-    dta '                    '
-    dta '                    '
-    dta '1                  1'
-    dta '1                  1'
-    dta '                    '
-    dta '                    '
-    dta '                    '
-    dta '1                  1'
+    dta '        1111        '
+    dta '    1111    1111    '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '   1111      1111   '
+    dta '    1111    1111    '
+    dta '        1111        '
 
 nivel1
     .by 0,0,0,0

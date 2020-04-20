@@ -15,7 +15,7 @@ inicio
 ;reseteamos nivel a 0
 	jsr reseter_nivel
 	mwa #>font CHBAS
-
+	limpia_puntaje
 ;Activa pantalla de titulos
 titulos
 	mwa #pant_principal SDLSTL
@@ -74,26 +74,8 @@ pon_color_g
 ;--------------------------------------
 ; validamos las niveles
 ;---------------------------------------
-pantalla_00
-	lda nivel
-	cmp #0
-	bne pantalla_01
-	veo_cuadros nivel0
-	limpia_puntaje
-	jmp*
-pantalla_01
-	lda nivel
-	cmp #1
-	bne pantalla_02
-	veo_cuadros nivel1
-	limpia_puntaje
-	jmp*
-pantalla_02
-	lda nivel
-	cmp #2
-	bne fin_niveles
-	veo_cuadros nivel2
-	limpia_puntaje
+veo_pantallas	
+	veo_cuadros
 	jmp*
 fin_niveles
 	jmp *
