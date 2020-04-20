@@ -74,19 +74,12 @@ pon_color_g
 ;--------------------------------------
 ; validamos las niveles
 ;---------------------------------------
-veo_pantallas	
+veo_pantallas
 	veo_cuadros
+	jsr muestro_nivel_juego
+	actualiza_puntaje
 	jmp*
 fin_niveles
-	jmp *
-	
-	
-
-;	pausa 30
-	actualiza_puntaje
-;	limpia_puzzle
-
-	jsr muestro_nivel_juego
 	jmp * 
 
 ;---------------------------------------
