@@ -77,4 +77,16 @@ nivel1
     dta '                    '
     dta '                    '
 
-
+nivel2
+    .by 0,0,0,0
+    dta '        11          '
+    dta '        11          '
+    dta '        11          '
+    dta '        11          '
+    dta '        11          '
+    dta '1       11         1'
+    dta '1       11         1'
+    dta '        11          '
+    dta '        11          '
+    dta '        11          '
+    dta '        11          '

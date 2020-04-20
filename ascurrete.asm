@@ -72,20 +72,33 @@ pon_color_g
 	bpl pon_color_g
 
 ;--------------------------------------
-; pinta el nivel en la pantalla
+; validamos las niveles
 ;---------------------------------------
-	lda #0
-	sta nivel
+pantalla_00
+	lda nivel
+	cmp #0
+	bne pantalla_01
+	veo_cuadros nivel0
 	limpia_puntaje
-
-	ldy #0
-copy  
-	mva nivel0,y nivel_temp,y+
-	cpy #.len nivel_temp
-	bne copy
-
-	mwa #pant_puzzle temp1
-	crea_nivel
+	jmp*
+pantalla_01
+	lda nivel
+	cmp #1
+	bne pantalla_02
+	veo_cuadros nivel1
+	limpia_puntaje
+	jmp*
+pantalla_02
+	lda nivel
+	cmp #2
+	bne fin_niveles
+	veo_cuadros nivel2
+	limpia_puntaje
+	jmp*
+fin_niveles
+	jmp *
+	
+	
 
 ;	pausa 30
 	actualiza_puntaje
@@ -446,12 +459,6 @@ reseter_nivel
 	lda #$10
 	sta puntero_nivel
 	sta puntero_nivel+1
-	rts
-muestro_nivel_juego
-	lda puntero_nivel+1
-	sta nivel_juego+1
-	lda puntero_nivel
-	sta nivel_juego
 	rts
 ;---------------------------------------
 ; Zona de memoria para el Puzzle

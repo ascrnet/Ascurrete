@@ -178,4 +178,27 @@ objectos
 	inc :1+1
 exitadd	
 .endm
-
+;----------------------------------
+; muestro nivel de juego
+;----------------------------------
+.proc muestro_nivel_juego
+	lda puntero_nivel+1
+	sta nivel_juego+1
+	lda puntero_nivel
+	sta nivel_juego
+	rts
+.endp
+;----------------------------------
+; obtiene data para colocar 
+; cuadrados en la pantalla
+;----------------------------------
+.macro veo_cuadros
+	ldy #0
+copy  
+	mva :1,y nivel_temp,y+
+	cpy #.len nivel_temp
+	bne copy
+	mwa #pant_puzzle temp1
+	crea_nivel
+	muestro_nivel_juego
+.endm
