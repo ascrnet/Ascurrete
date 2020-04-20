@@ -193,7 +193,7 @@ exitadd
 ; cuadrados en la pantalla
 ;----------------------------------
 .macro veo_cuadros
-	ldx nivel
+	lda nivel
 	asl
 	tax
 	lda niveles,x
