@@ -291,7 +291,7 @@ pant_juego
 ;---------------------------------------
 barra_puntaje
 	.sb " 0000000 "
-	.by $bd
+	.by $ae
 nivel_juego
 	.sb "00 "
 	.by $be
