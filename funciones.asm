@@ -81,7 +81,7 @@ digito1
 act_puntaje
 	lda puntaje,x
 	ora #$10
-	sta barra_puntaje+2,x
+	sta barra_puntaje+1,x
 	dex
 	bpl act_puntaje
 	rts
@@ -102,12 +102,28 @@ crea
 	beq obj1
 	cmp #'1'
 	beq obj2
+	cmp #'2'
+	beq obj3
+	cmp #'3'
+	beq obj4
+	cmp #'4'
+	beq obj5
     jmp *
 obj1
 	mva #0 temp2
 	jmp obj_fin
 obj2 
 	mva #1 temp2
+	jmp obj_fin
+obj3
+	mva #2 temp2
+	jmp obj_fin
+obj4
+	mva #3 temp2
+	jmp obj_fin
+obj5
+	mva #4 temp2
+
 obj_fin
 	pant_objectos
 	inc xsur
@@ -163,8 +179,11 @@ idx
 
 ; Diseño de objectos 2x2 caracteres
 objectos
-	.by $0,$0,$0,$0
-    .by $40,$41,$42,$43
+	.by $0,$0,$0,$0     ; espacios 
+    .by $40,$41,$42,$43 ; cuadrado
+	.by $40,$41,$44,$45 ; linea vertical parte 1
+	.by $44,$45,$44,$45 ; Linea vertical parte 2
+	.by $44,$45,$42,$43 ; Linea vertical parte 3
 .endp
 
 ;----------------------------------

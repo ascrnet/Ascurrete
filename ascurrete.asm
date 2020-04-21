@@ -64,6 +64,8 @@ opcion_inicio3
 ;---------------------------------------
 jugar
 	mwa #pant_juego SDLSTL
+	mwa #dli VDSLST
+	mva #192 NMIEN
 	ldx #3
 pon_color_g
 	lda colores_juego,x
@@ -274,12 +276,11 @@ pant_principal
 ;---------------------------------------
 pant_juego
 :3	.by $70
-	.by $46
-	.wo barra_nivel
 	.by $44
 	.wo pant_puzzle
 :21	.by 04
-	.by $30
+	.by $20+$80
+	.by $20
 	.by $46
 	.wo barra_puntaje
 	.by $41 
@@ -288,16 +289,34 @@ pant_juego
 ;---------------------------------------
 ; textos de la pantalla del juego
 ;---------------------------------------
-barra_nivel
-	.sb "      NIVEL "
-nivel_juego
-	.sb "00      "
 barra_puntaje
-	.sb "  0000000   "
-	.by $7e
+	.sb " 0000000 "
+	.by $bd
+nivel_juego
+	.sb "00 "
+	.by $be
 	.sb "50 "
-	.by $7f
-	.sb "03 "
+	.by $bf
+	.sb "03"
+
+;---------------------------------------
+; Dli para la barras de puntaje
+;---------------------------------------
+dli
+	phr
+	ldx #$0
+ndli
+	lda dli_color,x
+	sta WSYNC
+	sta COLBK	
+	inx
+	cpx #14
+	bne ndli
+	plr
+	rti	
+
+dli_color
+	.by +$1,9,2,2,2,2,2,2,2,2,2,2,2,9,0
 
 ;---------------------------------------
 ; Colores del juego

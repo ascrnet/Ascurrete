@@ -4,6 +4,7 @@
 
 RTCLOK = $14
 ATRACT = $4d
+VDSLST = $200
 SDLSTL = $230
 SDMCTL = $22f
 GPRIOR = $26f
@@ -21,10 +22,12 @@ CHBAS  = $2f4
 HPOSP0 = $d000
 HPOSP1 = $d001
 P0PF   = $d004
+COLBK  = $d01a
 GRACTL = $d01d
 HITCLR = $d01e  
 CONSOL = $d01f
 PMBASE = $d407
+WSYNC  = $d40a
 NMIEN  = $d40e
 SETVBV = $e45C
 XITVBV = $e462
