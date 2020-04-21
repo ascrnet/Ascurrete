@@ -27,4 +27,4 @@ temp3   .ds 2
 
 ; Variable de nivel del juego 
 nivel   .ds 1
-
+puntero_nivel .ds 2 

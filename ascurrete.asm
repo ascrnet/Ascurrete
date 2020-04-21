@@ -9,7 +9,7 @@
 	icl "funciones.asm"
 
 	org $2000
-puntero_nivel	= $cb
+
 ;Inicio del juego
 inicio
 ;reseteamos nivel a 0
