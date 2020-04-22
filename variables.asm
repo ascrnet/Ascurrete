@@ -24,6 +24,7 @@ puntaje .ds 7
 temp1   .ds 2
 temp2   .ds 2
 temp3   .ds 2
+temp4	.ds 1
 
 ; Variable de nivel del juego 
 nivel   .ds 1
