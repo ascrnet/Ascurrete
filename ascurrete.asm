@@ -421,7 +421,7 @@ sumo_nivel
 	ldx nivel
 	inx
 	stx nivel
-	cpx #3
+	cpx #16
 	beq reseter_nivel
 	lda puntero_nivel+1
 	cmp #$19
