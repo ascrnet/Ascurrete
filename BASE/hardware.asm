@@ -22,17 +22,20 @@ CHBAS  = $2f4
 HPOSP0 = $d000
 HPOSP1 = $d001
 P0PF   = $d004
+COLPF0 = $d016          	
+COLPF1 = $d017
+COLPF2 = $d018
+COLPF3 = $d019         
 COLBK  = $d01a
 GRACTL = $d01d
 HITCLR = $d01e  
 CONSOL = $d01f
 PMBASE = $d407
 WSYNC  = $d40a
+VCOUNT = $d40b       
 NMIEN  = $d40e
-SETVBV = $e45C
+SETVBV = $e45c
 XITVBV = $e462
-
-
 
 ;---------------------------
 ; Zona de memoria para 
