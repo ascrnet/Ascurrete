@@ -216,6 +216,12 @@ objectos
 	.by $40,$46,$42,$47 ; Linea horizontal parte 1
 	.by $46,$46,$47,$47 ; Linea horizontal parte 2
 	.by $46,$41,$47,$43 ; Linea horizontal Parte 3
+	.by $44,$48,$42,$47 ; Esquina 1 - L
+	.by $40,$46,$44,$48 ; Esquina 2 - L envertida
+	.by $48,$45,$47,$43 ; Esquina 3
+	.by $46,$41,$48,$45 ; Esquina 4
+	.by $0,$49,$0,$4a	; Salida 1 pruebaaaaaaa
+	
 .endp
 
 ;----------------------------------
