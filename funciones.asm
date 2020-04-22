@@ -108,6 +108,12 @@ crea
 	beq obj4
 	cmp #'4'
 	beq obj5
+	cmp #'5'
+	beq obj6
+	cmp #'6'
+	beq obj7
+	cmp #'7'
+	beq obj8
     jmp *
 obj1
 	mva #0 temp2
@@ -123,6 +129,15 @@ obj4
 	jmp obj_fin
 obj5
 	mva #4 temp2
+	jmp obj_fin
+obj6
+	mva #5 temp2
+	jmp obj_fin
+obj7
+	mva #6 temp2
+	jmp obj_fin
+obj8
+	mva #7 temp2
 
 obj_fin
 	pant_objectos
@@ -179,11 +194,14 @@ idx
 
 ; Diseño de objectos 2x2 caracteres
 objectos
-	.by $0,$0,$0,$0     ; espacios 
-    .by $40,$41,$42,$43 ; cuadrado
-	.by $40,$41,$44,$45 ; linea vertical parte 1
+	.by $0,$0,$0,$0     ; Espacios 
+    .by $40,$41,$42,$43 ; Cuadrado
+	.by $40,$41,$44,$45 ; Linea vertical parte 1
 	.by $44,$45,$44,$45 ; Linea vertical parte 2
 	.by $44,$45,$42,$43 ; Linea vertical parte 3
+	.by $40,$46,$42,$47 ; Linea horizontal parte 1
+	.by $46,$46,$47,$47 ; Linea horizontal parte 2
+	.by $46,$41,$47,$43 ; Linea horizontal Parte 3
 .endp
 
 ;----------------------------------

@@ -51,14 +51,14 @@ nivel_temp
 
 nivel0
     .by 0,0,0,0
-    dta '      11111111      '
     dta '                    '
+    dta '               1    '
     dta '                    '
-    dta '         2          '
-    dta '         3          '
-    dta '         3          '
-    dta '         3          '
-    dta '         4          '
+    dta '    2               '
+    dta '    3               '
+    dta '    3               '
+    dta '    3               '
+    dta '    4    56667      '
     dta '                    '
     dta '                    '
     dta '      11111111      '
