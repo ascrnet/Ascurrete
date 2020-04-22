@@ -81,7 +81,7 @@ digito1
 act_puntaje
 	lda puntaje,x
 	ora #$10
-	sta barra_puntaje+1,x
+	sta barra_puntaje,x
 	dex
 	bpl act_puntaje
 	rts

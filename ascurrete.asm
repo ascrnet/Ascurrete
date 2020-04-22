@@ -290,7 +290,7 @@ pant_juego
 ; textos de la pantalla del juego
 ;---------------------------------------
 barra_puntaje
-	.sb " 0000000 "
+	.sb "0000000  "
 	.by $ae
 nivel_juego
 	.sb "00 "
