@@ -94,50 +94,64 @@ act_puntaje
 .proc crea_nivel
 	mva #0 xsur
 	mva #0 ysur
-	mva #4 idx 
-crea	
-	ldx idx
-	lda nivel_temp,x
-	cmp #' '
-	beq obj1
-	cmp #'1'
-	beq obj2
-	cmp #'2'
-	beq obj3
-	cmp #'3'
-	beq obj4
-	cmp #'4'
-	beq obj5
-	cmp #'5'
-	beq obj6
-	cmp #'6'
-	beq obj7
-	cmp #'7'
-	beq obj8
-    jmp *
-obj1
+	mva #4 idx
+	mva #4 temp4 
+crea
+	ldy temp4
+	lda nivel_temp,y	;tomo el 36
+	cmp idx
+	bne crea2			;si es diferente asumo que es espacio
+	iny
+	lda nivel_temp,y	;tomo el numero 
+	sta temp2
+	inc temp4
+	inc temp4
+	jmp obj_fin
+crea2
 	mva #0 temp2
 	jmp obj_fin
-obj2 
-	mva #1 temp2
-	jmp obj_fin
-obj3
-	mva #2 temp2
-	jmp obj_fin
-obj4
-	mva #3 temp2
-	jmp obj_fin
-obj5
-	mva #4 temp2
-	jmp obj_fin
-obj6
-	mva #5 temp2
-	jmp obj_fin
-obj7
-	mva #6 temp2
-	jmp obj_fin
-obj8
-	mva #7 temp2
+;	ldx idx				;lo uso como contador
+;	lda nivel_temp+1,x			
+;	cmp #' '
+;	beq obj1
+;	cmp #'1'
+;	beq obj2
+;	cmp #'2'
+;	beq obj3
+;	cmp #'3'
+;	beq obj4
+;	cmp #'4'
+;	beq obj5
+;	cmp #'5'
+;	beq obj6
+;	cmp #'6'
+;	beq obj7
+;	cmp #'7'
+;	beq obj8
+    jmp *
+;obj1
+;	mva #0 temp2
+;	jmp obj_fin
+;obj2 
+;	mva #1 temp2
+;	jmp obj_fin
+;obj3
+;	mva #2 temp2
+;	jmp obj_fin
+;obj4
+;	mva #3 temp2
+;	jmp obj_fin
+;obj5
+;	mva #4 temp2
+;	jmp obj_fin
+;obj6
+;	mva #5 temp2
+;	jmp obj_fin
+;obj7
+;	mva #6 temp2
+;	jmp obj_fin
+;obj8
+;	mva #7 temp2
 
 obj_fin
 	pant_objectos
