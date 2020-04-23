@@ -13,13 +13,11 @@
 .endm
 
 .macro arcoiris
-arco
-	lda $d40b
+	lda VCOUNT
 	clc
 	adc 20
-	sta $d40a
-	sta $d01a
-	jmp arco
+	sta WSYNC
+	sta COLPF0
 .endm
 
 ;--------------------------------------
