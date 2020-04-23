@@ -31,11 +31,12 @@ pongo_color_portada
 ; si es boton enviamos a jugar
 ;---------------------------------------
 opcion_inicio
-	lda VCOUNT
-	clc
-	adc 20
-	sta WSYNC
-	sta COLPF0
+;	lda VCOUNT
+;	clc
+;	adc 20
+;	sta WSYNC
+;	sta COLPF0
+	arcoiris
 	lda CONSOL
 ;si es select viajo a opcion_inicio2
 	cmp #5
@@ -48,6 +49,7 @@ opcion_inicio
 	jmp opcion_inicio
 opcion_inicio2
 ;si suelto select continuo
+	arcoiris
 	lda consol
 	cmp #5
 	beq opcion_inicio2
@@ -60,6 +62,7 @@ opcion_inicio2
 	sta nivel_principal
 	jmp opcion_inicio
 opcion_inicio3
+	arcoiris
 ;valido si se suelta start
 	lda consol
 	cmp #6
