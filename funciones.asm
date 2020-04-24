@@ -14,27 +14,22 @@
 
 .macro arcoiris
 ;	lda RTCLOK
-;	and #59
-;	bne arco0
-;	ldx #1
-;	jmp arco1
-;arco0
+;	and #50
+
 	ldx #1
-arco1
+;
+arco
 	lda VCOUNT
 	clc
 	cpx #1
-	bne arco2
+	bne arco_arriba
 	adc RTCLOK
-	jmp arco3
-arco2
+	jmp arco_abajo
+arco_arriba
 	sbc RTCLOK
-arco3
+arco_abajo
 	sta WSYNC
 	sta COLPF0
-	jmp arco_fin
-arco_fin
-
 .endm
 
 ;--------------------------------------
