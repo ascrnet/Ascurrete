@@ -12,13 +12,18 @@
 	eif
 .endm
 
-.macro arcoiris
-;	lda RTCLOK
-;	and #50
-
-	ldx #1
-;
-arco
+.proc arcoiris
+	lda RTCLOK
+	cmp #135
+	bne leearcoiris
+	inc direc_arco
+	lda direc_arco
+	cmp #2
+	bne leearcoiris
+	mva #0 direc_arco
+leearcoiris
+	lda direc_arco
+	tax
 	lda VCOUNT
 	clc
 	cpx #1
@@ -30,7 +35,8 @@ arco_arriba
 arco_abajo
 	sta WSYNC
 	sta COLPF0
-.endm
+	rts
+.endp
 
 ;--------------------------------------
 ; Calcula pixiles por caracteres

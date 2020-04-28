@@ -27,5 +27,6 @@ temp3   .ds 2
 temp4	.ds 1
 
 ; Variable de nivel del juego 
+direc_arco  .ds 1  ; dirección del arcoiris 
 nivel   .ds 1
 puntero_nivel .ds 2 

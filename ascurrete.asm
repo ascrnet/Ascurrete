@@ -13,6 +13,8 @@
 ;Inicio del juego
 inicio
 ;reseteamos nivel a 0
+	mva #0 direc_arco
+	mva #0 RTCLOK
 	jsr reseter_nivel
 	mwa #>font CHBAS
 	limpia_puntaje
@@ -25,6 +27,8 @@ pongo_color_portada
 	sta COLOR0,x
 	dex
 	bpl pongo_color_portada 
+
+
 
 ;---------------------------------------
 ; opcion 
