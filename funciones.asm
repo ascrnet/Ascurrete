@@ -12,6 +12,9 @@
 	eif
 .endm
 
+;--------------------------------
+; Hace efecto arcoiris
+;--------------------------------
 .proc arcoiris
 	lda RTCLOK
 	cmp #135
@@ -111,63 +114,31 @@ act_puntaje
 	mva #0 xsur
 	mva #0 ysur
 	mva #4 idx
-	mva #4 temp4 
+;	mva #0 temp4 
 crea
-	ldy temp4
-	lda nivel_temp,y	;tomo el 36
-	cmp idx
-	bne crea2			;si es diferente asumo que es espacio
-	iny
-	lda nivel_temp,y	;tomo el numero 
-	sta temp2
-	inc temp4
-	inc temp4
-	jmp obj_fin
-crea2
-	mva #0 temp2
-	jmp obj_fin
-;	ldx idx				;lo uso como contador
-;	lda nivel_temp+1,x			
-;	cmp #' '
-;	beq obj1
-;	cmp #'1'
-;	beq obj2
-;	cmp #'2'
-;	beq obj3
-;	cmp #'3'
-;	beq obj4
-;	cmp #'4'
-;	beq obj5
-;	cmp #'5'
-;	beq obj6
-;	cmp #'6'
-;	beq obj7
-;	cmp #'7'
-;	beq obj8
-    jmp *
-;obj1
+;	ldy temp4
+;	lda nivel_temp,y	;tomo el 36
+;	cmp idx
+;	bne crea2			;si es diferente asumo que es espacio
+;	iny
+;	lda nivel_temp,y	;tomo el numero 
+;	sta temp2
+;	inc temp4
+;	inc temp4
+;	jmp obj_fin
+;crea2
 ;	mva #0 temp2
 ;	jmp obj_fin
-;obj2 
-;	mva #1 temp2
-;	jmp obj_fin
-;obj3
-;	mva #2 temp2
-;	jmp obj_fin
-;obj4
-;	mva #3 temp2
-;	jmp obj_fin
-;obj5
-;	mva #4 temp2
-;	jmp obj_fin
-;obj6
-;	mva #5 temp2
-;	jmp obj_fin
-;obj7
-;	mva #6 temp2
-;	jmp obj_fin
-;obj8
-;	mva #7 temp2
+	ldx idx				;lo uso como contador
+	lda nivel_temp,x
+	sta temp2	
+	cmp #' '
+	beq obj1
+;	sub16 temp2 #40 ; resto 40 
+	jmp obj_fin
+
+obj1
+	mva #0 temp2
 
 obj_fin
 	pant_objectos
@@ -224,18 +195,18 @@ idx
 
 ; Diseño de objectos 2x2 caracteres
 objectos
-	.by $0,$0,$0,$0     ; Espacios 
-    .by $40,$41,$42,$43 ; Cuadrado
-	.by $40,$41,$44,$45 ; Linea vertical parte 1
-	.by $44,$45,$44,$45 ; Linea vertical parte 2
-	.by $44,$45,$42,$43 ; Linea vertical parte 3
-	.by $40,$46,$42,$47 ; Linea horizontal parte 1
-	.by $46,$46,$47,$47 ; Linea horizontal parte 2
-	.by $46,$41,$47,$43 ; Linea horizontal Parte 3
-	.by $44,$48,$42,$47 ; Esquina 1 - L
-	.by $40,$46,$44,$48 ; Esquina 2 - L envertida
-	.by $48,$45,$47,$43 ; Esquina 3
-	.by $46,$41,$48,$45 ; Esquina 4
+	.by $0,$0,$0,$0     ;' '-Espacios 
+    .by $40,$41,$42,$43 ; A-Cuadrado
+	.by $40,$41,$44,$45 ; B-Linea vertical parte 1
+	.by $44,$45,$44,$45 ; C-Linea vertical parte 2
+	.by $44,$45,$42,$43 ; D-Linea vertical parte 3
+	.by $40,$46,$42,$47 ; E-Linea horizontal parte 1
+	.by $46,$46,$47,$47 ; F-Linea horizontal parte 2
+	.by $46,$41,$47,$43 ; G-Linea horizontal Parte 3
+	.by $44,$48,$42,$47 ; H-Esquina 1 - L
+	.by $40,$46,$44,$48 ; I-Esquina 2 - L envertida
+	.by $48,$45,$47,$43 ; J-Esquina 3
+	.by $46,$41,$48,$45 ; K-Esquina 4
 	.by $0,$49,$0,$4a	; Salida 1 pruebaaaaaaa
 	
 .endp
@@ -251,6 +222,19 @@ objectos
 	inc :1+1
 exitadd	
 .endm
+
+;----------------------------------
+; Resta 16 bytes
+;----------------------------------
+.macro	sub16
+	lda :1
+	sub :2
+	sta :1
+	bcs exitsub
+	dec :1+1
+exitsub
+.endm
+
 ;----------------------------------
 ; muestro nivel de juego
 ;----------------------------------
@@ -261,6 +245,7 @@ exitadd
 	sta nivel_juego
 	rts
 .endp
+
 ;----------------------------------
 ; obtiene data para colocar 
 ; cuadrados en la pantalla

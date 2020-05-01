@@ -12,9 +12,9 @@
 
 ;Inicio del juego
 inicio
-;reseteamos nivel a 0
 	mva #0 direc_arco
 	mva #0 RTCLOK
+;reseteamos nivel a 0
 	jsr reseter_nivel
 	mwa #>font CHBAS
 	limpia_puntaje
@@ -27,8 +27,6 @@ pongo_color_portada
 	sta COLOR0,x
 	dex
 	bpl pongo_color_portada 
-
-
 
 ;---------------------------------------
 ; opcion 
@@ -88,9 +86,9 @@ pon_color_g
 veo_pantallas
 	veo_cuadros
 	actualiza_puntaje
-	jmp*
-fin_niveles
-	jmp * 
+;	jmp *
+;fin_niveles
+;	jmp * 
 
 ;---------------------------------------
 ;Active PM
@@ -100,9 +98,9 @@ fin_niveles
 	mva #62 SDMCTL
 	mva #34 GPRIOR
 
-	pone_pelota 10 5
+	pone_pelota 6 0
 	mva #$c4 PCOLR0
-	mva #$cc PCOLR0+1
+	mva #$cc PCOLR1
 
 	lda #$07	
 	ldx #>vbd
@@ -388,7 +386,7 @@ reseter_nivel
 ;---------------------------------------
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
-	org $4000
+	org $5000
 	icl "niveles.asm"
 
 ;---------------------------------------

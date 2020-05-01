@@ -3,34 +3,34 @@
 ;---------------------------------------
 
 ; Pantalla de prueba.....
-pant_puzzle
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
-:20 .by $40,$41
-:20 .by $42,$43
+;pant_puzzle
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
+;:20 .by $40,$41
+;:20 .by $42,$43
 
 
 ; Listado de niveles
 niveles 
-    .word nivel0,nivel1,nivel2,nivel3,nivel4
+    .word nivel1,nivel1,nivel2,nivel3,nivel4
     .word nivel5,nivel6,nivel7,nivel8,nivel9
     .word nivel10,nivel11,nivel12,nivel13,nivel14
     .word nivel15
@@ -91,18 +91,18 @@ nivel0
 ;    dta '      11111111      '
 
 nivel1
-    .by 0,0,0,0
-    dta '      111111        '
-    dta '     1111111        '
-    dta '    111 1111        '
-    dta '   111  1111        '
-    dta '  111   1111        '
-    dta '        1111        '
-    dta '        1111        '
-    dta '        1111        '
-    dta '        1111        '
-    dta '11111111111111111111'
-    dta '11111111111111111111'
+    .by 6,0,0,0
+    dta 'A                  A'
+    dta '                    '
+    dta '                    '
+    dta '   B        EFFFK   '
+    dta '   C            C   '
+    dta '   C            C   '   
+    dta '   C            C   '
+    dta '   HFFFG        D   '
+    dta '                    '
+    dta '                    '
+    dta 'A                  A'
 
 nivel2
     .by 0,0,0,0
