@@ -17,16 +17,16 @@ direccion .ds 1
 pelota_x  .ds 1
 pelota_y  .ds 1
 
-; Variable de puntaje
-puntaje .ds 7
-
 ; Variables temporales
 temp1   .ds 2
 temp2   .ds 2
 temp3   .ds 2
 temp4	.ds 1
+direc_arco  .ds 1
 
-; Variable de nivel del juego 
-direc_arco  .ds 1  ; dirección del arcoiris 
+; Variables del juego 
+puntaje .ds 7
+vidas   .ds 1
+tiempo  .ds 2
 nivel   .ds 1
 puntero_nivel .ds 2 

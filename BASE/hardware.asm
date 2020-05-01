@@ -41,7 +41,7 @@ XITVBV = $e462
 ; Zona de memoria para
 ; la pantalla
 ;---------------------------
-pant_puzzle = $1000
+PANT_PUZZLE = $1000
 
 ;---------------------------
 ; Zona de memoria para 

@@ -56,10 +56,10 @@ arco_abajo
 	lda #0 ; espacio en blanco
 	ldx #0
 limpiar
-	sta pant_puzzle,x
-	sta pant_puzzle+$100,x
-	sta pant_puzzle+$200,x
-	sta pant_puzzle+$300,x
+	sta PANT_PUZZLE,x
+	sta PANT_PUZZLE+$100,x
+	sta PANT_PUZZLE+$200,x
+	sta PANT_PUZZLE+$300,x
 	dex
 	bne limpiar
 	rts
@@ -207,7 +207,7 @@ objectos
 	.by $40,$46,$44,$48 ; I-Esquina 2 - L envertida
 	.by $48,$45,$47,$43 ; J-Esquina 3
 	.by $46,$41,$48,$45 ; K-Esquina 4
-	.by $0,$49,$0,$4a	; Salida 1 pruebaaaaaaa
+	.by $0,$0,$4d,$4e	; N-Salida 1 pruebaaaaaaa
 	
 .endp
 

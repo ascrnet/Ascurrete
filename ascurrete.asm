@@ -13,6 +13,7 @@
 ;Inicio del juego
 inicio
 	mva #0 direc_arco
+	mva #3 vidas
 	mva #0 RTCLOK
 ;reseteamos nivel a 0
 	jsr reseter_nivel
@@ -86,9 +87,8 @@ pon_color_g
 veo_pantallas
 	veo_cuadros
 	actualiza_puntaje
-;	jmp *
-;fin_niveles
-;	jmp * 
+
+	jmp * 
 
 ;---------------------------------------
 ;Active PM
@@ -284,7 +284,7 @@ pant_principal
 pant_juego
 :3	.by $70
 	.by $44
-	.wo pant_puzzle
+	.wo PANT_PUZZLE
 :21	.by 04
 	.by $20+$80
 	.by $20
@@ -386,7 +386,7 @@ reseter_nivel
 ;---------------------------------------
 ; Zona de memoria para el Puzzle
 ;---------------------------------------
-	org $5000
+	org $4000
 	icl "niveles.asm"
 
 ;---------------------------------------

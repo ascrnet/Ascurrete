@@ -92,31 +92,31 @@ nivel0
 
 nivel1
     .by 6,0,0,0
-    dta 'A                  A'
+    dta '                   A'
     dta '                    '
-    dta '                    '
-    dta '   B        EFFFK   '
+    dta '   B                '
+    dta '   C        EFFFK   '
     dta '   C            C   '
-    dta '   C            C   '   
     dta '   C            C   '
-    dta '   HFFFG        D   '
+    dta '   C            C   '
+    dta '   HFFFG        C   '
+    dta '                D   '
     dta '                    '
-    dta '                    '
-    dta 'A                  A'
+    dta 'A               L   '
 
 nivel2
     .by 0,0,0,0
-    dta '        11          '
-    dta '        11          '
-    dta '        11          '
-    dta '        11          '
-    dta '        11          '
-    dta '1       11         1'
-    dta '1       11         1'
-    dta '        11          '
-    dta '        11          '
-    dta '        11          '
-    dta '        11          '
+    dta 'A                   '
+    dta '                    '
+    dta '                    '
+    dta '   IFFFG      B     '
+    dta '   C          C     '
+    dta '   C          C     '
+    dta '   C          C     '
+    dta '   D      EFFFJ     '
+    dta '                    '
+    dta '                    '
+    dta '                   A'
 
 nivel3
     .by 0,0,0,0
