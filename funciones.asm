@@ -111,6 +111,14 @@ act_puntaje
 ; del nivel
 ;------------------------------
 .proc crea_nivel
+	ldx #0
+	lda nivel_temp,x
+	sta xsur
+	mva xsur pelota_x
+	inx
+	lda nivel_temp,x
+	sta ysur
+	mva ysur pelota_y
 	mva #0 xsur
 	mva #0 ysur
 	mva #4 idx

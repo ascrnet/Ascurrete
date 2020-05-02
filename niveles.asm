@@ -91,7 +91,7 @@ nivel0
 ;    dta '      11111111      '
 
 nivel1
-    .by 6,0,0,0
+    .by 6*8+48,0*16+36,0,0  ; x = x*8+48 , y=y*16+36
     dta '                   A'
     dta '                    '
     dta '   B                '
@@ -102,11 +102,11 @@ nivel1
     dta '   HFFFG        C   '
     dta '                D   '
     dta '                    '
-    dta 'A               L   '
+    dta 'A              L    '
 
 nivel2
-    .by 0,0,0,0
-    dta 'A                   '
+    .by 6*8+48,10*16+36,0,0
+    dta 'A           L       '
     dta '                    '
     dta '                    '
     dta '   IFFFG      B     '

@@ -88,7 +88,7 @@ veo_pantallas
 	veo_cuadros
 	actualiza_puntaje
 
-	jmp * 
+;	jmp * 
 
 ;---------------------------------------
 ;Active PM
@@ -98,7 +98,7 @@ veo_pantallas
 	mva #62 SDMCTL
 	mva #34 GPRIOR
 
-	pone_pelota 6 0
+;	pone_pelota 6 0
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR1
 
