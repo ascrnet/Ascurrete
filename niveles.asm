@@ -106,7 +106,7 @@ nivel1
 
 nivel2
     .by 6*8+48,10*16+36,0,0
-    dta 'A           L       '
+    dta 'A            M      '
     dta '                    '
     dta '                    '
     dta '   IFFFG      B     '

@@ -87,7 +87,6 @@ pon_color_g
 veo_pantallas
 	veo_cuadros
 	actualiza_puntaje
-
 ;	jmp * 
 
 ;---------------------------------------
@@ -98,7 +97,6 @@ veo_pantallas
 	mva #62 SDMCTL
 	mva #34 GPRIOR
 
-;	pone_pelota 6 0
 	mva #$c4 PCOLR0
 	mva #$cc PCOLR1
 
@@ -145,7 +143,7 @@ mover_arriba
 	lda pelota_y
 	cmp #40
 	bne mover_arriba
-	pone_pelota 10 5
+	reinicia_pelota
 	jmp vuelve_leer
 stop_arriba
 	inc pelota_y
@@ -159,7 +157,7 @@ mover_abajo
 	lda pelota_y
 	cmp #200
 	bne mover_abajo
-	pone_pelota 10 5
+	reinicia_pelota
 	jmp vuelve_leer
 stop_abajo
 	dec pelota_y
@@ -173,7 +171,7 @@ mover_izquierda
 	lda pelota_x
 	cmp #40	
 	bne mover_izquierda
-	pone_pelota 10 5
+	reinicia_pelota
 	jmp vuelve_leer
 stop_izquierda
 	inc pelota_x
@@ -187,7 +185,7 @@ mover_derecha
 	lda pelota_x
 	cmp #200
 	bne mover_derecha
-	pone_pelota 10 5
+	reinicia_pelota
 	jmp vuelve_leer
 stop_derecha
 	dec pelota_x

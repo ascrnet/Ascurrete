@@ -115,10 +115,12 @@ act_puntaje
 	lda nivel_temp,x
 	sta xsur
 	mva xsur pelota_x
+	sta pelota_xn
 	inx
 	lda nivel_temp,x
 	sta ysur
 	mva ysur pelota_y
+	sta pelota_yn
 	mva #0 xsur
 	mva #0 ysur
 	mva #4 idx
@@ -215,8 +217,8 @@ objectos
 	.by $40,$46,$44,$48 ; I-Esquina 2 - L envertida
 	.by $48,$45,$47,$43 ; J-Esquina 3
 	.by $46,$41,$48,$45 ; K-Esquina 4
-	.by $0,$0,$4d,$4e	; N-Salida 1 pruebaaaaaaa
-	
+	.by $0,$0,$4d,$4e	; N-Salida abajo
+	.by $4f,$50,$0,$0	; M-Salida arriba
 .endp
 
 ;----------------------------------
@@ -275,3 +277,13 @@ copy
 	crea_nivel
 	muestro_nivel_juego
 .endm
+
+;-------------------------------
+; Reinicia x,y de la pelota
+; segun el nivel
+;-------------------------------
+.proc reinicia_pelota
+	mva pelota_xn pelota_x
+	mva pelota_yn pelota_y
+	rts
+.endp
