@@ -13,11 +13,16 @@
 ; 4 = derecha
 direccion .ds 1
 
-; Posición X e Y de la pelota en pantalla
-pelota_x  .ds 1
-pelota_y  .ds 1
+; Posición X e Y de la pelota
+; Player x,y
+pelota_xp  .ds 1
+pelota_yp  .ds 1
+; Nivel x,y
 pelota_xn  .ds 1
 pelota_yn  .ds 1
+; Pantalla x,y
+pelota_xs  .ds 1
+pelota_ys  .ds 1
 
 ; Variables temporales
 temp1   .ds 2

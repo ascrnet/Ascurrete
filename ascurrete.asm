@@ -6,7 +6,6 @@
 
 	icl "BASE/hardware.asm"
 	icl "variables.asm"
-	icl "funciones.asm"
 
 	org $2000
 
@@ -136,60 +135,60 @@ no_derecha
 ;leida del Joystick
 ;--------------------------------------
 mover_arriba
-	dec pelota_y
+	dec pelota_yp
 	pausa
 	lda P0PF
 	bne stop_arriba	
-	lda pelota_y
-	cmp #40
+	lda pelota_yp
+	cmp #30
 	bne mover_arriba
 	reinicia_pelota
 	jmp vuelve_leer
 stop_arriba
-	inc pelota_y
-	inc pelota_y
+	inc pelota_yp
+	inc pelota_yp
 	jmp vuelve_leer
 mover_abajo
-	inc pelota_y
+	inc pelota_yp
 	pausa
 	lda P0PF
 	bne stop_abajo
-	lda pelota_y
+	lda pelota_yp
 	cmp #200
 	bne mover_abajo
 	reinicia_pelota
 	jmp vuelve_leer
 stop_abajo
-	dec pelota_y
-	dec pelota_y
+	dec pelota_yp
+	dec pelota_yp
 	jmp vuelve_leer
 mover_izquierda
-	dec pelota_x
+	dec pelota_xp
 	pausa
 	lda P0PF
 	bne stop_izquierda
-	lda pelota_x
+	lda pelota_xp
 	cmp #40	
 	bne mover_izquierda
 	reinicia_pelota
 	jmp vuelve_leer
 stop_izquierda
-	inc pelota_x
-	inc pelota_x
+	inc pelota_xp
+	inc pelota_xp
 	jmp vuelve_leer
 mover_derecha
-	inc pelota_x
+	inc pelota_xp
 	pausa
 	lda P0PF
 	bne stop_derecha
-	lda pelota_x
+	lda pelota_xp
 	cmp #200
 	bne mover_derecha
 	reinicia_pelota
 	jmp vuelve_leer
 stop_derecha
-	dec pelota_x
-	dec pelota_x	
+	dec pelota_xp
+	dec pelota_xp	
 vuelve_leer
 	jmp lee_joy
 
@@ -216,7 +215,7 @@ limpia_pm
 	sta PLAYER_1,x
 	inx
 	bne limpia_pm
-	ldx pelota_y
+	ldx pelota_yp
 	ldy #$00
 lee_datos_pm0
 	lda pelota0,y
@@ -225,7 +224,7 @@ lee_datos_pm0
 	inx			
 	cpy #8
 	bne lee_datos_pm0
-	ldx pelota_y
+	ldx pelota_yp
 	ldy #$00
 lee_datos_pm1
 	lda pelota1,y
@@ -234,7 +233,7 @@ lee_datos_pm1
 	inx			
 	cpy #5
 	bne lee_datos_pm1
-	lda pelota_x
+	lda pelota_xp
 	sta HPOSP0
 	sta HPOSP1
 	jmp XITVBV
@@ -380,6 +379,11 @@ reseter_nivel
 	sta puntero_nivel
 	sta puntero_nivel+1
 	rts
+
+;--------------------------------------
+; Archivo de funciones
+;---------------------------------------
+	icl "funciones.asm"
 
 ;---------------------------------------
 ; Zona de memoria para el Puzzle

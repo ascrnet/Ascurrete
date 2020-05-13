@@ -45,8 +45,8 @@ arco_abajo
 ; Calcula pixiles por caracteres
 ;--------------------------------------
 .macro  pone_pelota (x,y)
-	mva #:x*8+48 pelota_x
-	mva #:y*16+36 pelota_y
+	mva #:x*8+48 pelota_xp
+	mva #:y*16+36 pelota_yp
 .endm
 
 ;--------------------------------------
@@ -114,12 +114,12 @@ act_puntaje
 	ldx #0
 	lda nivel_temp,x
 	sta xsur
-	mva xsur pelota_x
+	mva xsur pelota_xp
 	sta pelota_xn
 	inx
 	lda nivel_temp,x
 	sta ysur
-	mva ysur pelota_y
+	mva ysur pelota_yp
 	sta pelota_yn
 	mva #0 xsur
 	mva #0 ysur
@@ -283,7 +283,7 @@ copy
 ; segun el nivel
 ;-------------------------------
 .proc reinicia_pelota
-	mva pelota_xn pelota_x
-	mva pelota_yn pelota_y
+	mva pelota_xn pelota_xp
+	mva pelota_yn pelota_yp
 	rts
 .endp
