@@ -8,6 +8,8 @@
 	icl "variables.asm"
 
 	org $2000
+	lda #$00
+	
 
 ;Inicio del juego
 inicio
