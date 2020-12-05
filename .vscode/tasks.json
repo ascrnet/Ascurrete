@@ -18,9 +18,11 @@
         },{
             "label": "Run Altirra",
             "type": "shell",
-            "command": "wine",
+            "command": "wine64",
             "args": [ "/opt/Altirra/Altirra64.exe","${fileBasenameNoExtension}.xex"],
-            "problemMatcher": []
+            "options": {
+                "env": { "WINEDEBUG": "-all" }
+            }
         },{
             "label": "Compiler Mads Win",
             "type": "shell",
